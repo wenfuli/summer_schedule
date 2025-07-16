@@ -747,469 +747,338 @@
             'variables': {
                 title: '变量与数据类型',
                 description: '学习C++编程中的基本变量类型，包括整型、浮点型、字符型等，掌握变量的声明、初始化和使用方法。',
-                videoUrl: `${BASE_VIDEO_URL}/01%20%e8%af%ad%e6%b3%95%e5%9f%ba%e7%a1%80%e8%af%be/`,
-                duration: 45,
-                objectives: [
-                    '理解变量的概念和作用',
-                    '掌握基本数据类型的特点',
-                    '学会变量的声明和初始化',
-                    '能够正确使用不同类型的变量'
-                ],
-                category: 'basics'
+                videoUrl: `${BASE_VIDEO_URL}/01%20%e8%af%ad%e6%b3%95%e5%9f%ba%e7%a1%80%e8%af%be/01-%e5%8f%98%e9%87%8f%e4%b8%8e%e6%95%b0%e6%8d%ae%e7%b1%bb%e5%9e%8b.mp4`,
+                category: 'syntax',
+                level: 'beginner',
+                duration: '45分钟',
+                objectives: ['理解变量的概念', '掌握基本数据类型', '学会变量的声明和初始化']
             },
-            'operators': {
-                title: '运算符与表达式',
-                description: '深入学习各种运算符的使用，包括算术运算符、关系运算符、逻辑运算符等，以及表达式的计算规则。',
-                videoUrl: `${BASE_VIDEO_URL}/01%20%e8%af%ad%e6%b3%95%e5%9f%ba%e7%a1%80%e8%af%be/`,
-                duration: 38,
-                objectives: [
-                    '掌握各种运算符的使用方法',
-                    '理解运算符的优先级和结合性',
-                    '学会构造复杂的表达式',
-                    '能够进行表达式的计算和优化'
-                ],
-                category: 'basics'
+            'input_output': {
+                title: '基本输入输出',
+                description: '学习C++中的输入输出操作，包括cin、cout的使用，格式化输出，以及常见的输入输出技巧。',
+                videoUrl: `${BASE_VIDEO_URL}/01%20%e8%af%ad%e6%b3%95%e5%9f%ba%e7%a1%80%e8%af%be/02-%e5%9f%ba%e6%9c%ac%e8%be%93%e5%85%a5%e8%be%93%e5%87%ba.mp4`,
+                category: 'syntax',
+                level: 'beginner',
+                duration: '35分钟',
+                objectives: ['掌握cin和cout的使用', '理解输入输出流', '学会格式化输出']
             },
-            'control': {
-                title: '控制结构',
-                description: '学习程序的控制流程，包括条件语句、循环语句等，掌握程序逻辑的基本构建方法。',
-                videoUrl: `${BASE_VIDEO_URL}/01%20%e8%af%ad%e6%b3%95%e5%9f%ba%e7%a1%80%e8%af%be/`,
-                duration: 50,
-                objectives: [
-                    '掌握if-else条件语句的使用',
-                    '理解for和while循环的应用',
-                    '学会嵌套结构的编写',
-                    '能够设计复杂的程序逻辑'
-                ],
-                category: 'basics'
+            'conditional': {
+                title: '条件语句',
+                description: '学习if-else条件语句的使用，包括单分支、双分支、多分支条件语句，以及嵌套条件语句。',
+                videoUrl: `${BASE_VIDEO_URL}/01%20%e8%af%ad%e6%b3%95%e5%9f%ba%e7%a1%80%e8%af%be/03-%e6%9d%a1%e4%bb%b6%e8%af%ad%e5%8f%a5.mp4`,
+                category: 'syntax',
+                level: 'beginner',
+                duration: '40分钟',
+                objectives: ['掌握if-else语句', '理解条件判断', '学会多分支语句']
+            },
+            'loops': {
+                title: '循环结构',
+                description: '学习for循环、while循环和do-while循环的使用方法，掌握循环的嵌套和循环控制。',
+                videoUrl: `${BASE_VIDEO_URL}/01%20%e8%af%ad%e6%b3%95%e5%9f%ba%e7%a1%80%e8%af%be/04-%e5%be%aa%e7%8e%af%e7%bb%93%e6%9e%84.mp4`,
+                category: 'syntax',
+                level: 'beginner',
+                duration: '50分钟',
+                objectives: ['掌握for循环', '理解while循环', '学会循环嵌套']
+            },
+            'arrays': {
+                title: '数组基础',
+                description: '学习一维数组和二维数组的声明、初始化和使用方法，掌握数组的遍历和常见操作。',
+                videoUrl: `${BASE_VIDEO_URL}/01%20%e8%af%ad%e6%b3%95%e5%9f%ba%e7%a1%80%e8%af%be/05-%e6%95%b0%e7%bb%84%e5%9f%ba%e7%a1%80.mp4`,
+                category: 'syntax',
+                level: 'beginner',
+                duration: '45分钟',
+                objectives: ['掌握数组的声明', '理解数组的访问', '学会数组遍历']
             },
             'functions': {
                 title: '函数基础',
-                description: '学习函数的定义、调用、参数传递等基本概念，掌握模块化编程的思想。',
-                videoUrl: `${BASE_VIDEO_URL}/01%20%e8%af%ad%e6%b3%95%e5%9f%ba%e7%a1%80%e8%af%be/`,
-                duration: 42,
-                objectives: [
-                    '理解函数的概念和作用',
-                    '掌握函数的定义和调用',
-                    '学会参数传递的方式',
-                    '能够进行模块化程序设计'
-                ],
-                category: 'basics'
+                description: '学习函数的定义、调用和参数传递，掌握函数的返回值和作用域概念。',
+                videoUrl: `${BASE_VIDEO_URL}/01%20%e8%af%ad%e6%b3%95%e5%9f%ba%e7%a1%80%e8%af%be/06-%e5%87%bd%e6%95%b0%e5%9f%ba%e7%a1%80.mp4`,
+                category: 'syntax',
+                level: 'beginner',
+                duration: '40分钟',
+                objectives: ['掌握函数定义', '理解参数传递', '学会返回值使用']
             },
-            'arrays': {
-                title: '数组与字符串',
-                description: '学习数组和字符串的基本操作，包括声明、初始化、访问和常用算法。',
-                videoUrl: `${BASE_VIDEO_URL}/01%20%e8%af%ad%e6%b3%95%e5%9f%ba%e7%a1%80%e8%af%be/`,
-                duration: 48,
-                objectives: [
-                    '掌握数组的声明和使用',
-                    '理解字符串的基本操作',
-                    '学会数组的遍历和查找',
-                    '能够处理多维数组'
-                ],
-                category: 'basics'
-            },
-            
+
             // 02 初等数论
             'divisibility': {
-                title: '整除性理论',
-                description: '学习整除的基本概念和性质，掌握整除判断的方法和应用。',
-                videoUrl: `${BASE_VIDEO_URL}/02%20%e5%88%9d%e7%ad%89%e6%95%b0%e8%ae%ba/`,
-                duration: 40,
-                objectives: [
-                    '理解整除的基本概念',
-                    '掌握整除的判断方法',
-                    '学会整除性质的应用',
-                    '能够解决整除相关问题'
-                ],
-                category: 'number-theory'
+                title: '整除与余数',
+                description: '学习整除的概念、性质和判断方法，掌握余数的计算和应用。',
+                videoUrl: `${BASE_VIDEO_URL}/02%20%e5%88%9d%e7%ad%89%e6%95%b0%e8%ae%ba/01-%e6%95%b4%e9%99%a4%e4%b8%8e%e4%bd%99%e6%95%b0.mp4`,
+                category: 'number_theory',
+                level: 'beginner',
+                duration: '45分钟',
+                objectives: ['理解整除概念', '掌握余数计算', '学会整除判断']
             },
-            'prime': {
-                title: '质数与素数',
-                description: '深入学习质数的概念、判断方法和应用，包括素数筛选算法。',
-                videoUrl: `${BASE_VIDEO_URL}/02%20%e5%88%9d%e7%ad%89%e6%95%b0%e8%ae%ba/`,
-                duration: 45,
-                objectives: [
-                    '理解质数和合数的概念',
-                    '掌握质数的判断方法',
-                    '学会埃氏筛法',
-                    '能够解决质数相关问题'
-                ],
-                category: 'number-theory'
+            'gcd_lcm': {
+                title: '最大公约数与最小公倍数',
+                description: '学习最大公约数和最小公倍数的概念、性质和求解方法，包括辗转相除法。',
+                videoUrl: `${BASE_VIDEO_URL}/02%20%e5%88%9d%e7%ad%89%e6%95%b0%e8%ae%ba/02-%e6%9c%80%e5%a4%a7%e5%85%ac%e7%ba%a6%e6%95%b0%e4%b8%8e%e6%9c%80%e5%b0%8f%e5%85%ac%e5%80%8d%e6%95%b0.mp4`,
+                category: 'number_theory',
+                level: 'intermediate',
+                duration: '50分钟',
+                objectives: ['掌握gcd和lcm概念', '学会辗转相除法', '理解数论性质']
             },
-            'gcd': {
-                title: '最大公约数',
-                description: '学习最大公约数和最小公倍数的概念，掌握欧几里得算法。',
-                videoUrl: `${BASE_VIDEO_URL}/02%20%e5%88%9d%e7%ad%89%e6%95%b0%e8%ae%ba/`,
-                duration: 35,
-                objectives: [
-                    '理解最大公约数的概念',
-                    '掌握欧几里得算法',
-                    '学会扩展欧几里得算法',
-                    '能够解决相关数学问题'
-                ],
-                category: 'number-theory'
+            'prime_numbers': {
+                title: '质数与合数',
+                description: '学习质数和合数的概念、判断方法，掌握质数筛选算法。',
+                videoUrl: `${BASE_VIDEO_URL}/02%20%e5%88%9d%e7%ad%89%e6%95%b0%e8%ae%ba/03-%e8%b4%a8%e6%95%b0%e4%b8%8e%e5%90%88%e6%95%b0.mp4`,
+                category: 'number_theory',
+                level: 'intermediate',
+                duration: '40分钟',
+                objectives: ['理解质数概念', '掌握质数判断', '学会埃氏筛法']
             },
-            'modular': {
+            'modular_arithmetic': {
                 title: '模运算',
-                description: '学习模运算的基本性质和应用，包括模加法、模乘法等。',
-                videoUrl: `${BASE_VIDEO_URL}/02%20%e5%88%9d%e7%ad%89%e6%95%b0%e8%ae%ba/`,
-                duration: 38,
-                objectives: [
-                    '理解模运算的概念',
-                    '掌握模运算的性质',
-                    '学会模运算的应用',
-                    '能够解决模运算相关问题'
-                ],
-                category: 'number-theory'
+                description: '学习模运算的概念、性质和应用，掌握模运算在算法中的使用。',
+                videoUrl: `${BASE_VIDEO_URL}/02%20%e5%88%9d%e7%ad%89%e6%95%b0%e8%ae%ba/04-%e6%a8%a1%e8%bf%90%e7%ae%97.mp4`,
+                category: 'number_theory',
+                level: 'intermediate',
+                duration: '35分钟',
+                objectives: ['掌握模运算性质', '理解同余概念', '学会模运算应用']
             },
-            'euler': {
-                title: '欧拉函数',
-                description: '学习欧拉函数的定义和性质，掌握其在数论中的应用。',
-                videoUrl: `${BASE_VIDEO_URL}/02%20%e5%88%9d%e7%ad%89%e6%95%b0%e8%ae%ba/`,
-                duration: 43,
-                objectives: [
-                    '理解欧拉函数的定义',
-                    '掌握欧拉函数的性质',
-                    '学会欧拉函数的计算',
-                    '能够应用欧拉函数解题'
-                ],
-                category: 'number-theory'
+            'fast_power': {
+                title: '快速幂',
+                description: '学习快速幂算法的原理和实现，掌握大数幂运算的优化方法。',
+                videoUrl: `${BASE_VIDEO_URL}/02%20%e5%88%9d%e7%ad%89%e6%95%b0%e8%ae%ba/05-%e5%bf%ab%e9%80%9f%e5%b9%82.mp4`,
+                category: 'number_theory',
+                level: 'intermediate',
+                duration: '45分钟',
+                objectives: ['理解快速幂原理', '掌握递归实现', '学会迭代优化']
             },
-            
+
             // 03 算法入门课
-            'complexity': {
+            'algorithm_complexity': {
                 title: '算法复杂度',
-                description: '学习算法复杂度的概念，包括时间复杂度和空间复杂度，掌握大O表示法。',
-                videoUrl: `${BASE_VIDEO_URL}/03%20%e7%ae%97%e6%b3%95%e5%85%a5%e9%97%a8%e8%af%be/`,
-                duration: 52,
-                objectives: [
-                    '理解算法复杂度的重要性',
-                    '掌握大O表示法',
-                    '学会分析算法的时间和空间复杂度',
-                    '能够比较不同算法的效率'
-                ],
-                category: 'intro-algorithms'
+                description: '学习时间复杂度和空间复杂度的概念，掌握算法效率分析方法。',
+                videoUrl: `${BASE_VIDEO_URL}/03%20%e7%ae%97%e6%b3%95%e5%85%a5%e9%97%a8%e8%af%be/01-%e7%ae%97%e6%b3%95%e5%a4%8d%e6%9d%82%e5%ba%a6.mp4`,
+                category: 'algorithm_intro',
+                level: 'beginner',
+                duration: '40分钟',
+                objectives: ['理解时间复杂度', '掌握空间复杂度', '学会效率分析']
             },
-            'sorting': {
+            'sorting_algorithms': {
                 title: '排序算法',
-                description: '全面学习各种排序算法，包括冒泡排序、选择排序、插入排序、快速排序、归并排序等。',
-                videoUrl: `${BASE_VIDEO_URL}/03%20%e7%ae%97%e6%b3%95%e5%85%a5%e9%97%a8%e8%af%be/`,
-                duration: 55,
-                objectives: [
-                    '掌握多种排序算法的原理',
-                    '理解不同排序算法的适用场景',
-                    '学会实现各种排序算法',
-                    '能够根据数据特点选择合适的排序方法'
-                ],
-                category: 'intro-algorithms'
+                description: '学习常见的排序算法，包括冒泡排序、选择排序、插入排序和快速排序。',
+                videoUrl: `${BASE_VIDEO_URL}/03%20%e7%ae%97%e6%b3%95%e5%85%a5%e9%97%a8%e8%af%be/02-%e6%8e%92%e5%ba%8f%e7%ae%97%e6%b3%95.mp4`,
+                category: 'algorithm_intro',
+                level: 'intermediate',
+                duration: '55分钟',
+                objectives: ['掌握基本排序算法', '理解排序原理', '学会算法优化']
             },
-            'searching': {
-                title: '搜索算法',
-                description: '学习线性搜索、二分搜索等基本搜索算法，掌握搜索的基本思想。',
-                videoUrl: `${BASE_VIDEO_URL}/03%20%e7%ae%97%e6%b3%95%e5%85%a5%e9%97%a8%e8%af%be/`,
-                duration: 40,
-                objectives: [
-                    '掌握线性搜索的方法',
-                    '理解二分搜索的原理',
-                    '学会搜索算法的实现',
-                    '能够优化搜索的效率'
-                ],
-                category: 'intro-algorithms'
+            'searching_algorithms': {
+                title: '查找算法',
+                description: '学习线性查找和二分查找算法，掌握查找算法的应用场景。',
+                videoUrl: `${BASE_VIDEO_URL}/03%20%e7%ae%97%e6%b3%95%e5%85%a5%e9%97%a8%e8%af%be/03-%e6%9f%a5%e6%89%be%e7%ae%97%e6%b3%95.mp4`,
+                category: 'algorithm_intro',
+                level: 'intermediate',
+                duration: '35分钟',
+                objectives: ['掌握线性查找', '理解二分查找', '学会查找优化']
             },
             'recursion': {
-                title: '递归思想',
-                description: '深入理解递归的概念和应用，学会用递归解决复杂问题。',
-                videoUrl: `${BASE_VIDEO_URL}/03%20%e7%ae%97%e6%b3%95%e5%85%a5%e9%97%a8%e8%af%be/`,
-                duration: 47,
-                objectives: [
-                    '理解递归的基本概念',
-                    '掌握递归的设计思路',
-                    '学会递归的实现方法',
-                    '能够用递归解决实际问题'
-                ],
-                category: 'intro-algorithms'
+                title: '递归算法',
+                description: '学习递归的概念和应用，掌握递归算法的设计和实现方法。',
+                videoUrl: `${BASE_VIDEO_URL}/03%20%e7%ae%97%e6%b3%95%e5%85%a5%e9%97%a8%e8%af%be/04-%e9%80%92%e5%bd%92%e7%ae%97%e6%b3%95.mp4`,
+                category: 'algorithm_intro',
+                level: 'intermediate',
+                duration: '45分钟',
+                objectives: ['理解递归概念', '掌握递归设计', '学会递归优化']
             },
-            'divide-conquer': {
-                title: '分治算法',
-                description: '学习分治算法的基本思想，掌握分治策略在算法设计中的应用。',
-                videoUrl: `${BASE_VIDEO_URL}/03%20%e7%ae%97%e6%b3%95%e5%85%a5%e9%97%a8%e8%af%be/`,
-                duration: 50,
-                objectives: [
-                    '理解分治算法的思想',
-                    '掌握分治的基本步骤',
-                    '学会分治算法的实现',
-                    '能够应用分治解决问题'
-                ],
-                category: 'intro-algorithms'
+            'greedy_algorithm': {
+                title: '贪心算法',
+                description: '学习贪心算法的思想和应用，掌握贪心策略的选择和证明。',
+                videoUrl: `${BASE_VIDEO_URL}/03%20%e7%ae%97%e6%b3%95%e5%85%a5%e9%97%a8%e8%af%be/05-%e8%b4%aa%e5%bf%83%e7%ae%97%e6%b3%95.mp4`,
+                category: 'algorithm_intro',
+                level: 'intermediate',
+                duration: '50分钟',
+                objectives: ['理解贪心思想', '掌握贪心策略', '学会正确性证明']
             },
-            
+
             // 04 算法基础课CSP-J
             'simulation': {
                 title: '模拟算法',
-                description: '学习模拟算法的基本思想，掌握如何将实际问题转化为程序模拟。',
-                videoUrl: `${BASE_VIDEO_URL}/04%20%e7%ae%97%e6%b3%95%e5%9f%ba%e7%a1%80%e8%af%beCSP-J/`,
-                duration: 45,
-                objectives: [
-                    '理解模拟算法的概念',
-                    '掌握模拟的基本方法',
-                    '学会问题的模拟实现',
-                    '能够优化模拟算法'
-                ],
-                category: 'csp-j'
+                description: '学习模拟算法的设计思路，掌握复杂题目的模拟实现方法。',
+                videoUrl: `${BASE_VIDEO_URL}/04%20%e7%ae%97%e6%b3%95%e5%9f%ba%e7%a1%80%e8%af%beCspj/01-%e6%a8%a1%e6%8b%9f%e7%ae%97%e6%b3%95.mp4`,
+                category: 'csp_j',
+                level: 'intermediate',
+                duration: '40分钟',
+                objectives: ['掌握模拟思路', '学会细节处理', '提高代码实现能力']
             },
             'enumeration': {
                 title: '枚举算法',
-                description: '学习枚举算法的基本思想，掌握穷举法在问题求解中的应用。',
-                videoUrl: `${BASE_VIDEO_URL}/04%20%e7%ae%97%e6%b3%95%e5%9f%ba%e7%a1%80%e8%af%beCSP-J/`,
-                duration: 42,
-                objectives: [
-                    '理解枚举算法的思想',
-                    '掌握枚举的基本技巧',
-                    '学会枚举算法的优化',
-                    '能够应用枚举解决问题'
-                ],
-                category: 'csp-j'
+                description: '学习枚举算法的应用，掌握暴力枚举和优化枚举的方法。',
+                videoUrl: `${BASE_VIDEO_URL}/04%20%e7%ae%97%e6%b3%95%e5%9f%ba%e7%a1%80%e8%af%beCspj/02-%e6%9e%9a%e4%b8%be%e7%ae%97%e6%b3%95.mp4`,
+                category: 'csp_j',
+                level: 'intermediate',
+                duration: '45分钟',
+                objectives: ['掌握枚举思想', '学会剪枝优化', '提高枚举效率']
             },
-            'greedy': {
-                title: '贪心算法',
-                description: '学习贪心算法的基本思想，掌握贪心策略在算法设计中的应用。',
-                videoUrl: `${BASE_VIDEO_URL}/04%20%e7%ae%97%e6%b3%95%e5%9f%ba%e7%a1%80%e8%af%beCSP-J/`,
-                duration: 48,
-                objectives: [
-                    '理解贪心算法的思想',
-                    '掌握贪心策略的选择',
-                    '学会贪心算法的实现',
-                    '能够证明贪心算法的正确性'
-                ],
-                category: 'csp-j'
+            'prefix_sum': {
+                title: '前缀和',
+                description: '学习前缀和的概念和应用，掌握区间查询的优化方法。',
+                videoUrl: `${BASE_VIDEO_URL}/04%20%e7%ae%97%e6%b3%95%e5%9f%ba%e7%a1%80%e8%af%beCspj/03-%e5%89%8d%e7%bc%80%e5%92%8c.mp4`,
+                category: 'csp_j',
+                level: 'intermediate',
+                duration: '35分钟',
+                objectives: ['理解前缀和概念', '掌握区间查询', '学会二维前缀和']
             },
-            'dp-basic': {
-                title: '动态规划基础',
-                description: '初步学习动态规划的基本概念，掌握简单DP问题的求解方法。',
-                videoUrl: `${BASE_VIDEO_URL}/04%20%e7%ae%97%e6%b3%95%e5%9f%ba%e7%a1%80%e8%af%beCSP-J/`,
-                duration: 60,
-                objectives: [
-                    '理解动态规划的概念',
-                    '掌握状态转移方程',
-                    '学会DP问题的求解',
-                    '能够优化DP算法'
-                ],
-                category: 'csp-j'
+            'difference_array': {
+                title: '差分数组',
+                description: '学习差分数组的概念和应用，掌握区间修改的优化方法。',
+                videoUrl: `${BASE_VIDEO_URL}/04%20%e7%ae%97%e6%b3%95%e5%9f%ba%e7%a1%80%e8%af%beCspj/04-%e5%b7%ae%e5%88%86%e6%95%b0%e7%bb%84.mp4`,
+                category: 'csp_j',
+                level: 'intermediate',
+                duration: '40分钟',
+                objectives: ['理解差分概念', '掌握区间修改', '学会差分应用']
             },
-            'graph-basic': {
-                title: '图论基础',
-                description: '学习图的基本概念和表示方法，掌握图的基本算法。',
-                videoUrl: `${BASE_VIDEO_URL}/04%20%e7%ae%97%e6%b3%95%e5%9f%ba%e7%a1%80%e8%af%beCSP-J/`,
-                duration: 55,
-                objectives: [
-                    '理解图的基本概念',
-                    '掌握图的表示方法',
-                    '学会图的遍历算法',
-                    '能够解决基本图论问题'
-                ],
-                category: 'csp-j'
+            'binary_search': {
+                title: '二分查找',
+                description: '深入学习二分查找的各种变形，掌握二分答案的思想。',
+                videoUrl: `${BASE_VIDEO_URL}/04%20%e7%ae%97%e6%b3%95%e5%9f%ba%e7%a1%80%e8%af%beCspj/05-%e4%ba%8c%e5%88%86%e6%9f%a5%e6%89%be.mp4`,
+                category: 'csp_j',
+                level: 'intermediate',
+                duration: '50分钟',
+                objectives: ['深入理解二分', '掌握二分答案', '学会边界处理']
             },
-            
+
             // 05 普及转提高课
-            'data-structures': {
-                title: '数据结构进阶',
-                description: '深入学习栈、队列、链表等数据结构，掌握其实现和应用。',
-                videoUrl: `${BASE_VIDEO_URL}/05%20%e6%99%ae%e5%8f%8a%e8%bd%ac%e6%8f%90%e9%ab%98%e8%af%be/`,
-                duration: 65,
-                objectives: [
-                    '掌握栈和队列的实现',
-                    '理解链表的结构和操作',
-                    '学会数据结构的选择',
-                    '能够设计高效的数据结构'
-                ],
-                category: 'advanced-prep'
+            'dynamic_programming': {
+                title: '动态规划入门',
+                description: '学习动态规划的基本思想，掌握线性DP和背包问题的解法。',
+                videoUrl: `${BASE_VIDEO_URL}/05%20%e6%99%ae%e5%8f%8a%e8%bd%ac%e6%8f%90%e9%ab%98%e8%af%be/01-%e5%8a%a8%e6%80%81%e8%a7%84%e5%88%92%e5%85%a5%e9%97%a8.mp4`,
+                category: 'advanced',
+                level: 'advanced',
+                duration: '60分钟',
+                objectives: ['理解DP思想', '掌握状态转移', '学会背包问题']
             },
-            'string-algorithms': {
-                title: '字符串算法',
-                description: '学习字符串处理的高级算法，包括模式匹配、字符串哈希等。',
-                videoUrl: `${BASE_VIDEO_URL}/05%20%e6%99%ae%e5%8f%8a%e8%bd%ac%e6%8f%90%e9%ab%98%e8%af%be/`,
-                duration: 58,
-                objectives: [
-                    '掌握KMP算法原理',
-                    '理解字符串哈希',
-                    '学会字符串匹配算法',
-                    '能够解决字符串处理问题'
-                ],
-                category: 'advanced-prep'
+            'graph_theory': {
+                title: '图论基础',
+                description: '学习图的基本概念和表示方法，掌握图的遍历算法。',
+                videoUrl: `${BASE_VIDEO_URL}/05%20%e6%99%ae%e5%8f%8a%e8%bd%ac%e6%8f%90%e9%ab%98%e8%af%be/02-%e5%9b%be%e8%ae%ba%e5%9f%ba%e7%a1%80.mp4`,
+                category: 'advanced',
+                level: 'advanced',
+                duration: '55分钟',
+                objectives: ['理解图的概念', '掌握图的存储', '学会DFS和BFS']
             },
-            'tree-algorithms': {
-                title: '树形算法',
-                description: '深入学习二叉树、平衡树等树形结构和相关算法。',
-                videoUrl: `${BASE_VIDEO_URL}/05%20%e6%99%ae%e5%8f%8a%e8%bd%ac%e6%8f%90%e9%ab%98%e8%af%be/`,
-                duration: 62,
-                objectives: [
-                    '掌握二叉树的遍历',
-                    '理解平衡树的原理',
-                    '学会树形DP',
-                    '能够解决树形结构问题'
-                ],
-                category: 'advanced-prep'
+            'shortest_path': {
+                title: '最短路径',
+                description: '学习最短路径算法，包括Dijkstra和Floyd算法。',
+                videoUrl: `${BASE_VIDEO_URL}/05%20%e6%99%ae%e5%8f%8a%e8%bd%ac%e6%8f%90%e9%ab%98%e8%af%be/03-%e6%9c%80%e7%9f%ad%e8%b7%af%e5%be%84.mp4`,
+                category: 'advanced',
+                level: 'advanced',
+                duration: '50分钟',
+                objectives: ['掌握Dijkstra算法', '理解Floyd算法', '学会路径记录']
             },
-            'dp-advanced': {
-                title: '动态规划进阶',
-                description: '深入学习动态规划的高级技巧，包括状态压缩、区间DP等。',
-                videoUrl: `${BASE_VIDEO_URL}/05%20%e6%99%ae%e5%8f%8a%e8%bd%ac%e6%8f%90%e9%ab%98%e8%af%be/`,
-                duration: 70,
-                objectives: [
-                    '掌握状态压缩DP',
-                    '理解区间DP的思想',
-                    '学会DP优化技巧',
-                    '能够解决复杂DP问题'
-                ],
-                category: 'advanced-prep'
+            'minimum_spanning_tree': {
+                title: '最小生成树',
+                description: '学习最小生成树的概念和算法，掌握Kruskal和Prim算法。',
+                videoUrl: `${BASE_VIDEO_URL}/05%20%e6%99%ae%e5%8f%8a%e8%bd%ac%e6%8f%90%e9%ab%98%e8%af%be/04-%e6%9c%80%e5%b0%8f%e7%94%9f%e6%88%90%e6%a0%91.mp4`,
+                category: 'advanced',
+                level: 'advanced',
+                duration: '45分钟',
+                objectives: ['理解生成树概念', '掌握Kruskal算法', '学会Prim算法']
             },
-            'number-theory-advanced': {
-                title: '数论进阶',
-                description: '学习高级数论算法，包括中国剩余定理、快速幂等。',
-                videoUrl: `${BASE_VIDEO_URL}/05%20%e6%99%ae%e5%8f%8a%e8%bd%ac%e6%8f%90%e9%ab%98%e8%af%be/`,
-                duration: 55,
-                objectives: [
-                    '掌握中国剩余定理',
-                    '理解快速幂算法',
-                    '学会数论函数',
-                    '能够解决高级数论问题'
-                ],
-                category: 'advanced-prep'
+            'advanced_data_structure': {
+                title: '高级数据结构',
+                description: '学习高级数据结构，包括堆、并查集等。',
+                videoUrl: `${BASE_VIDEO_URL}/05%20%e6%99%ae%e5%8f%8a%e8%bd%ac%e6%8f%90%e9%ab%98%e8%af%be/05-%e9%ab%98%e7%ba%a7%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%84.mp4`,
+                category: 'advanced',
+                level: 'advanced',
+                duration: '55分钟',
+                objectives: ['掌握堆的操作', '理解并查集', '学会树状数组']
             },
-            
+
             // 06 算法提高组课
-            'segment-tree': {
-                title: '线段树',
-                description: '学习线段树的基本概念和操作，掌握区间查询和修改的高效算法。',
-                videoUrl: `${BASE_VIDEO_URL}/06%20%e7%ae%97%e6%b3%95%e6%8f%90%e9%ab%98%e7%bb%84%e8%af%be/`,
-                duration: 75,
-                objectives: [
-                    '理解线段树的结构',
-                    '掌握线段树的建立',
-                    '学会区间查询和修改',
-                    '能够应用线段树解决问题'
-                ],
-                category: 'advanced'
-            },
-            'binary-indexed-tree': {
-                title: '树状数组',
-                description: '学习树状数组的原理和实现，掌握前缀和的高效维护方法。',
-                videoUrl: `${BASE_VIDEO_URL}/06%20%e7%ae%97%e6%b3%95%e6%8f%90%e9%ab%98%e7%bb%84%e8%af%be/`,
-                duration: 50,
-                objectives: [
-                    '理解树状数组的原理',
-                    '掌握lowbit运算',
-                    '学会树状数组的实现',
-                    '能够维护前缀和'
-                ],
-                category: 'advanced'
-            },
-            'union-find': {
-                title: '并查集',
-                description: '学习并查集的基本概念和优化技巧，掌握集合的合并和查找。',
-                videoUrl: `${BASE_VIDEO_URL}/06%20%e7%ae%97%e6%b3%95%e6%8f%90%e9%ab%98%e7%bb%84%e8%af%be/`,
-                duration: 45,
-                objectives: [
-                    '理解并查集的概念',
-                    '掌握路径压缩',
-                    '学会按秩合并',
-                    '能够解决连通性问题'
-                ],
-                category: 'advanced'
-            },
-            'shortest-path': {
-                title: '最短路算法',
-                description: '学习Dijkstra、Floyd等最短路算法，掌握图中最短路径的求解。',
-                videoUrl: `${BASE_VIDEO_URL}/06%20%e7%ae%97%e6%b3%95%e6%8f%90%e9%ab%98%e7%bb%84%e8%af%be/`,
-                duration: 60,
-                objectives: [
-                    '掌握Dijkstra算法',
-                    '理解Floyd算法',
-                    '学会SPFA算法',
-                    '能够解决最短路问题'
-                ],
-                category: 'advanced'
-            },
-            'network-flow': {
-                title: '网络流',
-                description: '学习网络流的基本概念和算法，掌握最大流和最小费用最大流。',
-                videoUrl: `${BASE_VIDEO_URL}/06%20%e7%ae%97%e6%b3%95%e6%8f%90%e9%ab%98%e7%bb%84%e8%af%be/`,
-                duration: 80,
-                objectives: [
-                    '理解网络流的概念',
-                    '掌握最大流算法',
-                    '学会最小费用最大流',
-                    '能够建模网络流问题'
-                ],
-                category: 'advanced'
-            },
-            
-            // 07 NOIP及省选课程
-            'contest-strategies': {
-                title: '竞赛策略',
-                description: '学习竞赛中的策略和技巧，掌握时间管理和题目选择的方法。',
-                videoUrl: `${BASE_VIDEO_URL}/07%20NOIP%e5%8f%8a%e7%9c%81%e9%80%89%e8%af%be%e7%a8%8b/`,
-                duration: 40,
-                objectives: [
-                    '掌握竞赛时间管理',
-                    '理解题目难度评估',
-                    '学会代码调试技巧',
-                    '能够制定竞赛策略'
-                ],
-                category: 'competition'
-            },
-            'advanced-dp': {
+            'advanced_dp': {
                 title: '高级动态规划',
-                description: '学习高级DP技巧，包括数位DP、概率DP等复杂动态规划问题。',
-                videoUrl: `${BASE_VIDEO_URL}/07%20NOIP%e5%8f%8a%e7%9c%81%e9%80%89%e8%af%be%e7%a8%8b/`,
-                duration: 85,
-                objectives: [
-                    '掌握数位DP',
-                    '理解概率DP',
-                    '学会矩阵快速幂',
-                    '能够解决高级DP问题'
-                ],
-                category: 'competition'
+                description: '学习高级动态规划技巧，包括状态压缩DP、区间DP等。',
+                videoUrl: `${BASE_VIDEO_URL}/06%20%e7%ae%97%e6%b3%95%e6%8f%90%e9%ab%98%e7%bb%84%e8%af%be/01-%e9%ab%98%e7%ba%a7%e5%8a%a8%e6%80%81%e8%a7%84%e5%88%92.mp4`,
+                category: 'expert',
+                level: 'expert',
+                duration: '70分钟',
+                objectives: ['掌握状态压缩DP', '理解区间DP', '学会DP优化']
             },
-            'computational-geometry': {
-                title: '计算几何',
-                description: '学习计算几何的基本算法，掌握点、线、面的几何运算。',
-                videoUrl: `${BASE_VIDEO_URL}/07%20NOIP%e5%8f%8a%e7%9c%81%e9%80%89%e8%af%be%e7%a8%8b/`,
-                duration: 75,
-                objectives: [
-                    '掌握向量运算',
-                    '理解凸包算法',
-                    '学会线段相交判断',
-                    '能够解决几何问题'
-                ],
-                category: 'competition'
-            },
-            'string-matching': {
-                title: '字符串匹配',
-                description: '深入学习高级字符串匹配算法，包括AC自动机、后缀数组等。',
-                videoUrl: `${BASE_VIDEO_URL}/07%20NOIP%e5%8f%8a%e7%9c%81%e9%80%89%e8%af%be%e7%a8%8b/`,
-                duration: 90,
-                objectives: [
-                    '掌握AC自动机',
-                    '理解后缀数组',
-                    '学会Manacher算法',
-                    '能够解决复杂字符串问题'
-                ],
-                category: 'competition'
-            },
-            'advanced-graph': {
+            'advanced_graph': {
                 title: '高级图论',
                 description: '学习高级图论算法，包括强连通分量、割点割边等。',
-                videoUrl: `${BASE_VIDEO_URL}/07%20NOIP%e5%8f%8a%e7%9c%81%e9%80%89%e8%af%be%e7%a8%8b/`,
-                duration: 80,
-                objectives: [
-                    '掌握强连通分量',
-                    '理解割点割边',
-                    '学会二分图匹配',
-                    '能够解决高级图论问题'
-                ],
-                category: 'competition'
+                videoUrl: `${BASE_VIDEO_URL}/06%20%e7%ae%97%e6%b3%95%e6%8f%90%e9%ab%98%e7%bb%84%e8%af%be/02-%e9%ab%98%e7%ba%a7%e5%9b%be%e8%ae%ba.mp4`,
+                category: 'expert',
+                level: 'expert',
+                duration: '65分钟',
+                objectives: ['掌握强连通分量', '理解割点割边', '学会图论应用']
+            },
+            'network_flow': {
+                title: '网络流',
+                description: '学习网络流的基本概念和算法，掌握最大流最小割定理。',
+                videoUrl: `${BASE_VIDEO_URL}/06%20%e7%ae%97%e6%b3%95%e6%8f%90%e9%ab%98%e7%bb%84%e8%af%be/03-%e7%bd%91%e7%bb%9c%e6%b5%81.mp4`,
+                category: 'expert',
+                level: 'expert',
+                duration: '75分钟',
+                objectives: ['理解网络流概念', '掌握最大流算法', '学会最小割应用']
+            },
+            'string_algorithm': {
+                title: '字符串算法',
+                description: '学习高级字符串算法，包括KMP、AC自动机等。',
+                videoUrl: `${BASE_VIDEO_URL}/06%20%e7%ae%97%e6%b3%95%e6%8f%90%e9%ab%98%e7%bb%84%e8%af%be/04-%e5%ad%97%e7%ac%a6%e4%b8%b2%e7%ae%97%e6%b3%95.mp4`,
+                category: 'expert',
+                level: 'expert',
+                duration: '60分钟',
+                objectives: ['掌握KMP算法', '理解AC自动机', '学会字符串处理']
+            },
+            'computational_geometry': {
+                title: '计算几何',
+                description: '学习计算几何的基本概念和算法，掌握几何问题的解法。',
+                videoUrl: `${BASE_VIDEO_URL}/06%20%e7%ae%97%e6%b3%95%e6%8f%90%e9%ab%98%e7%bb%84%e8%af%be/05-%e8%ae%a1%e7%ae%97%e5%87%a0%e4%bd%95.mp4`,
+                category: 'expert',
+                level: 'expert',
+                duration: '55分钟',
+                objectives: ['理解几何基础', '掌握几何算法', '学会几何应用']
+            },
+
+            // 07 NOIP及省选课程
+            'noip_preparation': {
+                title: 'NOIP备考策略',
+                description: '学习NOIP考试的准备策略，掌握考试技巧和时间管理。',
+                videoUrl: `${BASE_VIDEO_URL}/07%20NoipAnd%e7%9c%81%e9%80%89%e8%af%be%e7%a8%8b/01-Noip%e5%a4%87%e8%80%83%e7%ad%96%e7%95%a5.mp4`,
+                category: 'competition',
+                level: 'expert',
+                duration: '45分钟',
+                objectives: ['了解NOIP考试', '掌握备考策略', '学会时间管理']
+            },
+            'problem_solving': {
+                title: '问题解决技巧',
+                description: '学习竞赛中的问题解决技巧，掌握题目分析和算法选择。',
+                videoUrl: `${BASE_VIDEO_URL}/07%20NoipAnd%e7%9c%81%e9%80%89%e8%af%be%e7%a8%8b/02-%e9%97%ae%e9%a2%98%e8%a7%a3%e5%86%b3%e6%8a%80%e5%b7%a7.mp4`,
+                category: 'competition',
+                level: 'expert',
+                duration: '50分钟',
+                objectives: ['掌握题目分析', '学会算法选择', '提高解题效率']
+            },
+            'optimization_techniques': {
+                title: '优化技巧',
+                description: '学习程序优化的各种技巧，掌握常数优化和算法优化。',
+                videoUrl: `${BASE_VIDEO_URL}/07%20NoipAnd%e7%9c%81%e9%80%89%e8%af%be%e7%a8%8b/03-%e4%bc%98%e5%8c%96%e6%8a%80%e5%b7%a7.mp4`,
+                category: 'competition',
+                level: 'expert',
+                duration: '55分钟',
+                objectives: ['掌握常数优化', '学会算法优化', '提高程序效率']
+            },
+            'contest_simulation': {
+                title: '比赛模拟',
+                description: '进行比赛模拟训练，体验真实的竞赛环境和压力。',
+                videoUrl: `${BASE_VIDEO_URL}/07%20NoipAnd%e7%9c%81%e9%80%89%e8%af%be%e7%a8%8b/04-%e6%af%94%e8%b5%9b%e6%a8%a1%e6%8b%9f.mp4`,
+                category: 'competition',
+                level: 'expert',
+                duration: '90分钟',
+                objectives: ['体验竞赛环境', '提高心理素质', '锻炼比赛技巧']
+            },
+            'provincial_selection': {
+                title: '省选专题',
+                description: '学习省选难度的算法和技巧，掌握高难度问题的解法。',
+                videoUrl: `${BASE_VIDEO_URL}/07%20NoipAnd%e7%9c%81%e9%80%89%e8%af%be%e7%a8%8b/05-%e7%9c%81%e9%80%89%e4%b8%93%e9%a2%98.mp4`,
+                category: 'competition',
+                level: 'expert',
+                duration: '80分钟',
+                objectives: ['掌握高难度算法', '学会复杂问题分析', '提高竞赛水平']
             }
         };
 
@@ -1348,7 +1217,7 @@
             // 更新视频时长信息
             document.querySelector('.lesson-meta').innerHTML = `
                 <span>📅 更新时间：2024年1月</span>
-                <span>⏱️ 视频时长：${lessonData.duration}分钟</span>
+                <span>⏱️ 视频时长：${lessonData.duration}</span>
                 <span>👥 学习人数：1,234人</span>
             `;
             

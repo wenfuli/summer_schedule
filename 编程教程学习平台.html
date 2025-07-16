@@ -2320,15 +2320,15 @@
                             </button>
                         </div>
                         
-                        <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-                            <div style="font-size: 2em; margin-bottom: 10px; color: #00b894;">🔧</div>
-                            <h3 style="color: #2d3436; margin-bottom: 10px;">方案二：安装浏览器扩展</h3>
-                            <p style="color: #636e72; font-size: 0.9em; margin-bottom: 15px;">安装CORS扩展后刷新页面</p>
-                            <button onclick="showCORSExtensions()" 
-                                    style="width: 100%; padding: 10px; background: #00b894; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">
-                                查看扩展 🛠️
-                            </button>
-                        </div>
+                                                 <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                             <div style="font-size: 2em; margin-bottom: 10px; color: #00b894;">🔧</div>
+                             <h3 style="color: #2d3436; margin-bottom: 10px;">方案二：安装浏览器扩展</h3>
+                             <p style="color: #636e72; font-size: 0.9em; margin-bottom: 15px;">详细的安装指南，支持Chrome/Firefox/Edge</p>
+                             <button onclick="showCORSExtensions()" 
+                                     style="width: 100%; padding: 10px; background: #00b894; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">
+                                 查看安装指南 📖
+                             </button>
+                         </div>
                         
                         <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
                             <div style="font-size: 2em; margin-bottom: 10px; color: #e17055;">📋</div>
@@ -2375,23 +2375,8 @@
         }
 
         function showCORSExtensions() {
-            alert(`推荐的CORS扩展：
-
-Chrome浏览器：
-• CORS Unblock
-• Disable CORS
-• CORS Toggle
-
-Firefox浏览器：
-• CORS Everywhere
-• CORS Enabler
-
-安装扩展后：
-1. 启用扩展
-2. 刷新此页面
-3. 重新点击课程即可正常播放
-
-注意：使用完毕后记得关闭扩展，以保证浏览器安全。`);
+            // 在新标签页中打开详细的CORS扩展安装指南
+            window.open('CORS扩展安装指南.html', '_blank');
         }
 
         function markLessonCompleted() {

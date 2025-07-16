@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>💻 北辰OI俱乐部 - 编程教程学习平台</title>
+    <title>💻 编程学习平台 - 在线视频教程</title>
+    <!-- Video.js CSS -->
+    <link href="https://vjs.zencdn.net/8.6.1/video-js.css" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -453,12 +455,67 @@
                 font-size: 1.5em;
             }
         }
+
+        /* 添加动画效果 */
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .lesson-content {
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        /* Video.js 样式优化 */
+        .video-js {
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .video-js .vjs-big-play-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            font-size: 28px;
+            line-height: 80px;
+            left: 50%;
+            top: 50%;
+            margin-left: -40px;
+            margin-top: -40px;
+        }
+
+        .video-js .vjs-control-bar {
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+        }
+
+        .video-js .vjs-play-progress {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
     </style>
 </head>
 <body>
     <header class="header">
         <div class="container">
-            <div class="logo">💻 北辰OI俱乐部</div>
+            <div class="logo">💻 编程学习平台</div>
             <nav class="nav-menu">
                 <a href="#home">首页</a>
                 <a href="#courses">课程</a>
@@ -583,7 +640,7 @@
         <div class="content-area">
             <div id="welcome-screen" class="welcome-screen">
                 <div class="welcome-icon">🎓</div>
-                <h1 class="welcome-title">欢迎来到北辰OI俱乐部</h1>
+                <h1 class="welcome-title">欢迎来到编程学习平台</h1>
                 <p class="welcome-subtitle">系统化学习编程竞赛算法，从基础到省选全覆盖</p>
                 <button class="start-learning-btn" onclick="startLearning()">开始学习</button>
                 
@@ -595,8 +652,8 @@
                     </div>
                     <div class="stat-card">
                         <div class="stat-icon">🎬</div>
-                        <div class="stat-number">100+</div>
-                        <div class="stat-label">教学视频</div>
+                        <div class="stat-number" id="total-lessons-count">35</div>
+                        <div class="stat-label">精品课程</div>
                     </div>
                     <div class="stat-card">
                         <div class="stat-icon">💡</div>
@@ -613,17 +670,27 @@
 
             <div id="lesson-content" class="lesson-content" style="display: none;">
                 <div class="video-container">
-                    <div class="video-placeholder">
+                    <div id="video-placeholder" class="video-placeholder">
                         <div style="text-align: center;">
                             <div style="font-size: 3em; margin-bottom: 20px;">▶️</div>
-                            <div>点击播放视频</div>
-                            <div class="video-controls">
-                                <button class="control-btn" onclick="playVideo()">播放</button>
-                                <button class="control-btn" onclick="pauseVideo()">暂停</button>
-                                <button class="control-btn" onclick="fullScreen()">全屏</button>
-                            </div>
+                            <div>选择课程开始学习</div>
                         </div>
                     </div>
+                    <video
+                        id="lesson-video"
+                        class="video-js vjs-default-skin"
+                        controls
+                        preload="auto"
+                        width="100%"
+                        height="100%"
+                        style="display: none; position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+                        data-setup="{}">
+                        <source src="" type="video/mp4">
+                        <p class="vjs-no-js">
+                            您的浏览器不支持HTML5视频播放。
+                            <a href="https://videojs.com/html5-video-support/" target="_blank">请升级您的浏览器</a>
+                        </p>
+                    </video>
                 </div>
 
                 <div class="lesson-details">
@@ -668,12 +735,20 @@
         </div>
     </div>
 
+    <!-- Video.js JavaScript -->
+    <script src="https://vjs.zencdn.net/8.6.1/video.min.js"></script>
+    
     <script>
-        // 课程数据
+        // 北辰OI俱乐部课程数据（使用真实视频资源）
+        const BASE_VIDEO_URL = 'https://idletick.com:9000/%e5%8c%97%e8%be%b0OI%e4%bf%b1%e4%b9%90%e9%83%a8%e8%af%be%e7%a8%8b%e4%bd%93%e7%b3%bb';
+        
         const courseData = {
+            // 01 语法基础课
             'variables': {
                 title: '变量与数据类型',
                 description: '学习C++编程中的基本变量类型，包括整型、浮点型、字符型等，掌握变量的声明、初始化和使用方法。',
+                videoUrl: `${BASE_VIDEO_URL}/01%20%e8%af%ad%e6%b3%95%e5%9f%ba%e7%a1%80%e8%af%be/`,
+                duration: 45,
                 objectives: [
                     '理解变量的概念和作用',
                     '掌握基本数据类型的特点',
@@ -685,6 +760,8 @@
             'operators': {
                 title: '运算符与表达式',
                 description: '深入学习各种运算符的使用，包括算术运算符、关系运算符、逻辑运算符等，以及表达式的计算规则。',
+                videoUrl: `${BASE_VIDEO_URL}/01%20%e8%af%ad%e6%b3%95%e5%9f%ba%e7%a1%80%e8%af%be/`,
+                duration: 38,
                 objectives: [
                     '掌握各种运算符的使用方法',
                     '理解运算符的优先级和结合性',
@@ -693,9 +770,119 @@
                 ],
                 category: 'basics'
             },
+            'control': {
+                title: '控制结构',
+                description: '学习程序的控制流程，包括条件语句、循环语句等，掌握程序逻辑的基本构建方法。',
+                videoUrl: `${BASE_VIDEO_URL}/01%20%e8%af%ad%e6%b3%95%e5%9f%ba%e7%a1%80%e8%af%be/`,
+                duration: 50,
+                objectives: [
+                    '掌握if-else条件语句的使用',
+                    '理解for和while循环的应用',
+                    '学会嵌套结构的编写',
+                    '能够设计复杂的程序逻辑'
+                ],
+                category: 'basics'
+            },
+            'functions': {
+                title: '函数基础',
+                description: '学习函数的定义、调用、参数传递等基本概念，掌握模块化编程的思想。',
+                videoUrl: `${BASE_VIDEO_URL}/01%20%e8%af%ad%e6%b3%95%e5%9f%ba%e7%a1%80%e8%af%be/`,
+                duration: 42,
+                objectives: [
+                    '理解函数的概念和作用',
+                    '掌握函数的定义和调用',
+                    '学会参数传递的方式',
+                    '能够进行模块化程序设计'
+                ],
+                category: 'basics'
+            },
+            'arrays': {
+                title: '数组与字符串',
+                description: '学习数组和字符串的基本操作，包括声明、初始化、访问和常用算法。',
+                videoUrl: `${BASE_VIDEO_URL}/01%20%e8%af%ad%e6%b3%95%e5%9f%ba%e7%a1%80%e8%af%be/`,
+                duration: 48,
+                objectives: [
+                    '掌握数组的声明和使用',
+                    '理解字符串的基本操作',
+                    '学会数组的遍历和查找',
+                    '能够处理多维数组'
+                ],
+                category: 'basics'
+            },
+            
+            // 02 初等数论
+            'divisibility': {
+                title: '整除性理论',
+                description: '学习整除的基本概念和性质，掌握整除判断的方法和应用。',
+                videoUrl: `${BASE_VIDEO_URL}/02%20%e5%88%9d%e7%ad%89%e6%95%b0%e8%ae%ba/`,
+                duration: 40,
+                objectives: [
+                    '理解整除的基本概念',
+                    '掌握整除的判断方法',
+                    '学会整除性质的应用',
+                    '能够解决整除相关问题'
+                ],
+                category: 'number-theory'
+            },
+            'prime': {
+                title: '质数与素数',
+                description: '深入学习质数的概念、判断方法和应用，包括素数筛选算法。',
+                videoUrl: `${BASE_VIDEO_URL}/02%20%e5%88%9d%e7%ad%89%e6%95%b0%e8%ae%ba/`,
+                duration: 45,
+                objectives: [
+                    '理解质数和合数的概念',
+                    '掌握质数的判断方法',
+                    '学会埃氏筛法',
+                    '能够解决质数相关问题'
+                ],
+                category: 'number-theory'
+            },
+            'gcd': {
+                title: '最大公约数',
+                description: '学习最大公约数和最小公倍数的概念，掌握欧几里得算法。',
+                videoUrl: `${BASE_VIDEO_URL}/02%20%e5%88%9d%e7%ad%89%e6%95%b0%e8%ae%ba/`,
+                duration: 35,
+                objectives: [
+                    '理解最大公约数的概念',
+                    '掌握欧几里得算法',
+                    '学会扩展欧几里得算法',
+                    '能够解决相关数学问题'
+                ],
+                category: 'number-theory'
+            },
+            'modular': {
+                title: '模运算',
+                description: '学习模运算的基本性质和应用，包括模加法、模乘法等。',
+                videoUrl: `${BASE_VIDEO_URL}/02%20%e5%88%9d%e7%ad%89%e6%95%b0%e8%ae%ba/`,
+                duration: 38,
+                objectives: [
+                    '理解模运算的概念',
+                    '掌握模运算的性质',
+                    '学会模运算的应用',
+                    '能够解决模运算相关问题'
+                ],
+                category: 'number-theory'
+            },
+            'euler': {
+                title: '欧拉函数',
+                description: '学习欧拉函数的定义和性质，掌握其在数论中的应用。',
+                videoUrl: `${BASE_VIDEO_URL}/02%20%e5%88%9d%e7%ad%89%e6%95%b0%e8%ae%ba/`,
+                duration: 43,
+                objectives: [
+                    '理解欧拉函数的定义',
+                    '掌握欧拉函数的性质',
+                    '学会欧拉函数的计算',
+                    '能够应用欧拉函数解题'
+                ],
+                category: 'number-theory'
+            },
+            
+            // 03 算法入门课
             'complexity': {
                 title: '算法复杂度',
-                description: '学习算法复杂度的概念，包括时间复杂度和空间复杂度，掌握大O表示法和常见算法的复杂度分析。',
+                description: '学习算法复杂度的概念，包括时间复杂度和空间复杂度，掌握大O表示法。',
+                videoUrl: `${BASE_VIDEO_URL}/03%20%e7%ae%97%e6%b3%95%e5%85%a5%e9%97%a8%e8%af%be/`,
+                duration: 52,
                 objectives: [
                     '理解算法复杂度的重要性',
                     '掌握大O表示法',
@@ -706,7 +893,9 @@
             },
             'sorting': {
                 title: '排序算法',
-                description: '全面学习各种排序算法，包括冒泡排序、选择排序、插入排序、快速排序、归并排序等，比较它们的性能特点。',
+                description: '全面学习各种排序算法，包括冒泡排序、选择排序、插入排序、快速排序、归并排序等。',
+                videoUrl: `${BASE_VIDEO_URL}/03%20%e7%ae%97%e6%b3%95%e5%85%a5%e9%97%a8%e8%af%be/`,
+                duration: 55,
                 objectives: [
                     '掌握多种排序算法的原理',
                     '理解不同排序算法的适用场景',
@@ -714,6 +903,313 @@
                     '能够根据数据特点选择合适的排序方法'
                 ],
                 category: 'intro-algorithms'
+            },
+            'searching': {
+                title: '搜索算法',
+                description: '学习线性搜索、二分搜索等基本搜索算法，掌握搜索的基本思想。',
+                videoUrl: `${BASE_VIDEO_URL}/03%20%e7%ae%97%e6%b3%95%e5%85%a5%e9%97%a8%e8%af%be/`,
+                duration: 40,
+                objectives: [
+                    '掌握线性搜索的方法',
+                    '理解二分搜索的原理',
+                    '学会搜索算法的实现',
+                    '能够优化搜索的效率'
+                ],
+                category: 'intro-algorithms'
+            },
+            'recursion': {
+                title: '递归思想',
+                description: '深入理解递归的概念和应用，学会用递归解决复杂问题。',
+                videoUrl: `${BASE_VIDEO_URL}/03%20%e7%ae%97%e6%b3%95%e5%85%a5%e9%97%a8%e8%af%be/`,
+                duration: 47,
+                objectives: [
+                    '理解递归的基本概念',
+                    '掌握递归的设计思路',
+                    '学会递归的实现方法',
+                    '能够用递归解决实际问题'
+                ],
+                category: 'intro-algorithms'
+            },
+            'divide-conquer': {
+                title: '分治算法',
+                description: '学习分治算法的基本思想，掌握分治策略在算法设计中的应用。',
+                videoUrl: `${BASE_VIDEO_URL}/03%20%e7%ae%97%e6%b3%95%e5%85%a5%e9%97%a8%e8%af%be/`,
+                duration: 50,
+                objectives: [
+                    '理解分治算法的思想',
+                    '掌握分治的基本步骤',
+                    '学会分治算法的实现',
+                    '能够应用分治解决问题'
+                ],
+                category: 'intro-algorithms'
+            },
+            
+            // 04 算法基础课CSP-J
+            'simulation': {
+                title: '模拟算法',
+                description: '学习模拟算法的基本思想，掌握如何将实际问题转化为程序模拟。',
+                videoUrl: `${BASE_VIDEO_URL}/04%20%e7%ae%97%e6%b3%95%e5%9f%ba%e7%a1%80%e8%af%beCSP-J/`,
+                duration: 45,
+                objectives: [
+                    '理解模拟算法的概念',
+                    '掌握模拟的基本方法',
+                    '学会问题的模拟实现',
+                    '能够优化模拟算法'
+                ],
+                category: 'csp-j'
+            },
+            'enumeration': {
+                title: '枚举算法',
+                description: '学习枚举算法的基本思想，掌握穷举法在问题求解中的应用。',
+                videoUrl: `${BASE_VIDEO_URL}/04%20%e7%ae%97%e6%b3%95%e5%9f%ba%e7%a1%80%e8%af%beCSP-J/`,
+                duration: 42,
+                objectives: [
+                    '理解枚举算法的思想',
+                    '掌握枚举的基本技巧',
+                    '学会枚举算法的优化',
+                    '能够应用枚举解决问题'
+                ],
+                category: 'csp-j'
+            },
+            'greedy': {
+                title: '贪心算法',
+                description: '学习贪心算法的基本思想，掌握贪心策略在算法设计中的应用。',
+                videoUrl: `${BASE_VIDEO_URL}/04%20%e7%ae%97%e6%b3%95%e5%9f%ba%e7%a1%80%e8%af%beCSP-J/`,
+                duration: 48,
+                objectives: [
+                    '理解贪心算法的思想',
+                    '掌握贪心策略的选择',
+                    '学会贪心算法的实现',
+                    '能够证明贪心算法的正确性'
+                ],
+                category: 'csp-j'
+            },
+            'dp-basic': {
+                title: '动态规划基础',
+                description: '初步学习动态规划的基本概念，掌握简单DP问题的求解方法。',
+                videoUrl: `${BASE_VIDEO_URL}/04%20%e7%ae%97%e6%b3%95%e5%9f%ba%e7%a1%80%e8%af%beCSP-J/`,
+                duration: 60,
+                objectives: [
+                    '理解动态规划的概念',
+                    '掌握状态转移方程',
+                    '学会DP问题的求解',
+                    '能够优化DP算法'
+                ],
+                category: 'csp-j'
+            },
+            'graph-basic': {
+                title: '图论基础',
+                description: '学习图的基本概念和表示方法，掌握图的基本算法。',
+                videoUrl: `${BASE_VIDEO_URL}/04%20%e7%ae%97%e6%b3%95%e5%9f%ba%e7%a1%80%e8%af%beCSP-J/`,
+                duration: 55,
+                objectives: [
+                    '理解图的基本概念',
+                    '掌握图的表示方法',
+                    '学会图的遍历算法',
+                    '能够解决基本图论问题'
+                ],
+                category: 'csp-j'
+            },
+            
+            // 05 普及转提高课
+            'data-structures': {
+                title: '数据结构进阶',
+                description: '深入学习栈、队列、链表等数据结构，掌握其实现和应用。',
+                videoUrl: `${BASE_VIDEO_URL}/05%20%e6%99%ae%e5%8f%8a%e8%bd%ac%e6%8f%90%e9%ab%98%e8%af%be/`,
+                duration: 65,
+                objectives: [
+                    '掌握栈和队列的实现',
+                    '理解链表的结构和操作',
+                    '学会数据结构的选择',
+                    '能够设计高效的数据结构'
+                ],
+                category: 'advanced-prep'
+            },
+            'string-algorithms': {
+                title: '字符串算法',
+                description: '学习字符串处理的高级算法，包括模式匹配、字符串哈希等。',
+                videoUrl: `${BASE_VIDEO_URL}/05%20%e6%99%ae%e5%8f%8a%e8%bd%ac%e6%8f%90%e9%ab%98%e8%af%be/`,
+                duration: 58,
+                objectives: [
+                    '掌握KMP算法原理',
+                    '理解字符串哈希',
+                    '学会字符串匹配算法',
+                    '能够解决字符串处理问题'
+                ],
+                category: 'advanced-prep'
+            },
+            'tree-algorithms': {
+                title: '树形算法',
+                description: '深入学习二叉树、平衡树等树形结构和相关算法。',
+                videoUrl: `${BASE_VIDEO_URL}/05%20%e6%99%ae%e5%8f%8a%e8%bd%ac%e6%8f%90%e9%ab%98%e8%af%be/`,
+                duration: 62,
+                objectives: [
+                    '掌握二叉树的遍历',
+                    '理解平衡树的原理',
+                    '学会树形DP',
+                    '能够解决树形结构问题'
+                ],
+                category: 'advanced-prep'
+            },
+            'dp-advanced': {
+                title: '动态规划进阶',
+                description: '深入学习动态规划的高级技巧，包括状态压缩、区间DP等。',
+                videoUrl: `${BASE_VIDEO_URL}/05%20%e6%99%ae%e5%8f%8a%e8%bd%ac%e6%8f%90%e9%ab%98%e8%af%be/`,
+                duration: 70,
+                objectives: [
+                    '掌握状态压缩DP',
+                    '理解区间DP的思想',
+                    '学会DP优化技巧',
+                    '能够解决复杂DP问题'
+                ],
+                category: 'advanced-prep'
+            },
+            'number-theory-advanced': {
+                title: '数论进阶',
+                description: '学习高级数论算法，包括中国剩余定理、快速幂等。',
+                videoUrl: `${BASE_VIDEO_URL}/05%20%e6%99%ae%e5%8f%8a%e8%bd%ac%e6%8f%90%e9%ab%98%e8%af%be/`,
+                duration: 55,
+                objectives: [
+                    '掌握中国剩余定理',
+                    '理解快速幂算法',
+                    '学会数论函数',
+                    '能够解决高级数论问题'
+                ],
+                category: 'advanced-prep'
+            },
+            
+            // 06 算法提高组课
+            'segment-tree': {
+                title: '线段树',
+                description: '学习线段树的基本概念和操作，掌握区间查询和修改的高效算法。',
+                videoUrl: `${BASE_VIDEO_URL}/06%20%e7%ae%97%e6%b3%95%e6%8f%90%e9%ab%98%e7%bb%84%e8%af%be/`,
+                duration: 75,
+                objectives: [
+                    '理解线段树的结构',
+                    '掌握线段树的建立',
+                    '学会区间查询和修改',
+                    '能够应用线段树解决问题'
+                ],
+                category: 'advanced'
+            },
+            'binary-indexed-tree': {
+                title: '树状数组',
+                description: '学习树状数组的原理和实现，掌握前缀和的高效维护方法。',
+                videoUrl: `${BASE_VIDEO_URL}/06%20%e7%ae%97%e6%b3%95%e6%8f%90%e9%ab%98%e7%bb%84%e8%af%be/`,
+                duration: 50,
+                objectives: [
+                    '理解树状数组的原理',
+                    '掌握lowbit运算',
+                    '学会树状数组的实现',
+                    '能够维护前缀和'
+                ],
+                category: 'advanced'
+            },
+            'union-find': {
+                title: '并查集',
+                description: '学习并查集的基本概念和优化技巧，掌握集合的合并和查找。',
+                videoUrl: `${BASE_VIDEO_URL}/06%20%e7%ae%97%e6%b3%95%e6%8f%90%e9%ab%98%e7%bb%84%e8%af%be/`,
+                duration: 45,
+                objectives: [
+                    '理解并查集的概念',
+                    '掌握路径压缩',
+                    '学会按秩合并',
+                    '能够解决连通性问题'
+                ],
+                category: 'advanced'
+            },
+            'shortest-path': {
+                title: '最短路算法',
+                description: '学习Dijkstra、Floyd等最短路算法，掌握图中最短路径的求解。',
+                videoUrl: `${BASE_VIDEO_URL}/06%20%e7%ae%97%e6%b3%95%e6%8f%90%e9%ab%98%e7%bb%84%e8%af%be/`,
+                duration: 60,
+                objectives: [
+                    '掌握Dijkstra算法',
+                    '理解Floyd算法',
+                    '学会SPFA算法',
+                    '能够解决最短路问题'
+                ],
+                category: 'advanced'
+            },
+            'network-flow': {
+                title: '网络流',
+                description: '学习网络流的基本概念和算法，掌握最大流和最小费用最大流。',
+                videoUrl: `${BASE_VIDEO_URL}/06%20%e7%ae%97%e6%b3%95%e6%8f%90%e9%ab%98%e7%bb%84%e8%af%be/`,
+                duration: 80,
+                objectives: [
+                    '理解网络流的概念',
+                    '掌握最大流算法',
+                    '学会最小费用最大流',
+                    '能够建模网络流问题'
+                ],
+                category: 'advanced'
+            },
+            
+            // 07 NOIP及省选课程
+            'contest-strategies': {
+                title: '竞赛策略',
+                description: '学习竞赛中的策略和技巧，掌握时间管理和题目选择的方法。',
+                videoUrl: `${BASE_VIDEO_URL}/07%20NOIP%e5%8f%8a%e7%9c%81%e9%80%89%e8%af%be%e7%a8%8b/`,
+                duration: 40,
+                objectives: [
+                    '掌握竞赛时间管理',
+                    '理解题目难度评估',
+                    '学会代码调试技巧',
+                    '能够制定竞赛策略'
+                ],
+                category: 'competition'
+            },
+            'advanced-dp': {
+                title: '高级动态规划',
+                description: '学习高级DP技巧，包括数位DP、概率DP等复杂动态规划问题。',
+                videoUrl: `${BASE_VIDEO_URL}/07%20NOIP%e5%8f%8a%e7%9c%81%e9%80%89%e8%af%be%e7%a8%8b/`,
+                duration: 85,
+                objectives: [
+                    '掌握数位DP',
+                    '理解概率DP',
+                    '学会矩阵快速幂',
+                    '能够解决高级DP问题'
+                ],
+                category: 'competition'
+            },
+            'computational-geometry': {
+                title: '计算几何',
+                description: '学习计算几何的基本算法，掌握点、线、面的几何运算。',
+                videoUrl: `${BASE_VIDEO_URL}/07%20NOIP%e5%8f%8a%e7%9c%81%e9%80%89%e8%af%be%e7%a8%8b/`,
+                duration: 75,
+                objectives: [
+                    '掌握向量运算',
+                    '理解凸包算法',
+                    '学会线段相交判断',
+                    '能够解决几何问题'
+                ],
+                category: 'competition'
+            },
+            'string-matching': {
+                title: '字符串匹配',
+                description: '深入学习高级字符串匹配算法，包括AC自动机、后缀数组等。',
+                videoUrl: `${BASE_VIDEO_URL}/07%20NOIP%e5%8f%8a%e7%9c%81%e9%80%89%e8%af%be%e7%a8%8b/`,
+                duration: 90,
+                objectives: [
+                    '掌握AC自动机',
+                    '理解后缀数组',
+                    '学会Manacher算法',
+                    '能够解决复杂字符串问题'
+                ],
+                category: 'competition'
+            },
+            'advanced-graph': {
+                title: '高级图论',
+                description: '学习高级图论算法，包括强连通分量、割点割边等。',
+                videoUrl: `${BASE_VIDEO_URL}/07%20NOIP%e5%8f%8a%e7%9c%81%e9%80%89%e8%af%be%e7%a8%8b/`,
+                duration: 80,
+                objectives: [
+                    '掌握强连通分量',
+                    '理解割点割边',
+                    '学会二分图匹配',
+                    '能够解决高级图论问题'
+                ],
+                category: 'competition'
             }
         };
 
@@ -721,12 +1217,60 @@
         let currentLesson = null;
         let completedLessons = new Set();
         let currentProgress = 0;
+        let videoPlayer = null;
+        let watchTimeInterval = null;
+
+        // 从localStorage加载进度
+        function loadProgress() {
+            const saved = localStorage.getItem('programmingLearningProgress');
+            if (saved) {
+                const data = JSON.parse(saved);
+                completedLessons = new Set(data.completedLessons || []);
+                currentProgress = data.currentProgress || 0;
+            }
+        }
+
+        // 保存进度到localStorage
+        function saveProgress() {
+            const data = {
+                completedLessons: Array.from(completedLessons),
+                currentProgress: currentProgress
+            };
+            localStorage.setItem('programmingLearningProgress', JSON.stringify(data));
+        }
 
         // 初始化
         document.addEventListener('DOMContentLoaded', function() {
+            loadProgress();
             initializeEventListeners();
             updateProgress();
+            
+            // 更新统计数据
+            updateStatistics();
+            
+            // 初始化Video.js播放器
+            videoPlayer = videojs('lesson-video', {
+                fluid: true,
+                responsive: true,
+                playbackRates: [0.5, 1, 1.25, 1.5, 2],
+                controls: true,
+                preload: 'metadata'
+            });
+            
+            // 监听视频事件
+            videoPlayer.on('timeupdate', updateVideoProgress);
+            videoPlayer.on('ended', onVideoEnded);
+            videoPlayer.on('play', onVideoPlay);
+            videoPlayer.on('pause', onVideoPause);
         });
+
+        function updateStatistics() {
+            const totalLessons = Object.keys(courseData).length;
+            const totalLessonsElement = document.getElementById('total-lessons-count');
+            if (totalLessonsElement) {
+                totalLessonsElement.textContent = totalLessons;
+            }
+        }
 
         function initializeEventListeners() {
             // 课程分类展开/收起
@@ -801,26 +1345,181 @@
                 objectivesList.appendChild(li);
             });
             
-            // 模拟加载进度
-            simulateVideoProgress();
+            // 更新视频时长信息
+            document.querySelector('.lesson-meta').innerHTML = `
+                <span>📅 更新时间：2024年1月</span>
+                <span>⏱️ 视频时长：${lessonData.duration}分钟</span>
+                <span>👥 学习人数：1,234人</span>
+            `;
+            
+            // 加载视频
+            loadVideo(lessonData.videoUrl);
+            
+            // 重置进度
+            resetVideoProgress();
         }
 
-        function simulateVideoProgress() {
+        function loadVideo(videoUrl) {
+            if (!videoPlayer || !videoUrl) return;
+            
+            // 检查是否是目录URL
+            if (videoUrl.endsWith('/')) {
+                // 显示目录浏览提示
+                showDirectoryBrowser(videoUrl);
+                return;
+            }
+            
+            // 隐藏占位符，显示视频播放器
+            document.getElementById('video-placeholder').style.display = 'none';
+            document.getElementById('lesson-video').style.display = 'block';
+            
+            // 加载视频
+            videoPlayer.src({
+                src: videoUrl,
+                type: 'video/mp4'
+            });
+            
+            // 重置播放器
+            videoPlayer.ready(() => {
+                videoPlayer.currentTime(0);
+                videoPlayer.pause();
+            });
+        }
+
+        function showDirectoryBrowser(directoryUrl) {
+            const placeholder = document.getElementById('video-placeholder');
+            placeholder.innerHTML = `
+                <div style="text-align: center; padding: 40px;">
+                    <div style="font-size: 2.5em; margin-bottom: 20px;">📁</div>
+                    <h3 style="color: #333; margin-bottom: 15px;">课程视频目录</h3>
+                    <p style="color: #666; margin-bottom: 20px;">
+                        视频文件位于: <br>
+                        <strong>${directoryUrl}</strong>
+                    </p>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <button onclick="browseDirectory('${directoryUrl}')" 
+                                style="padding: 10px 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+                                       color: white; border: none; border-radius: 20px; cursor: pointer; margin-right: 10px;">
+                            📂 浏览目录
+                        </button>
+                    </div>
+                    
+                    <div style="margin-top: 25px; padding: 20px; background: #f8f9fa; border-radius: 10px; max-width: 500px; margin-left: auto; margin-right: auto;">
+                        <h4 style="color: #333; margin-bottom: 10px;">🎬 直接播放视频</h4>
+                        <p style="color: #666; font-size: 0.9em; margin-bottom: 15px;">
+                            请输入完整的视频文件URL（支持.mp4, .webm, .ogg格式）
+                        </p>
+                        <input type="text" 
+                               id="video-url-input" 
+                               placeholder="粘贴视频文件URL..."
+                               style="width: 100%; padding: 8px 12px; border: 1px solid #ddd; border-radius: 5px; margin-bottom: 10px;">
+                        <button onclick="playCustomVideo()" 
+                                style="padding: 8px 16px; background: #27ae60; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                            ▶️ 播放视频
+                        </button>
+                    </div>
+                    
+                    <div style="margin-top: 20px; font-size: 0.9em; color: #999;">
+                        <p>💡 提示：在目录中找到.mp4文件，右键复制链接地址</p>
+                        <div style="margin-top: 10px; padding: 10px; background: #fff3cd; border-radius: 5px; color: #856404;">
+                            <strong>⚠️ 注意：</strong>如果视频无法播放，可能是跨域问题。<br>
+                            建议将视频文件下载到本地或使用支持CORS的视频托管服务。
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            // 显示占位符
+            placeholder.style.display = 'block';
+            document.getElementById('lesson-video').style.display = 'none';
+        }
+
+        function playCustomVideo() {
+            const input = document.getElementById('video-url-input');
+            const videoUrl = input.value.trim();
+            
+            if (!videoUrl) {
+                alert('请输入视频文件URL');
+                return;
+            }
+            
+            // 检查URL是否为视频文件
+            if (!videoUrl.match(/\.(mp4|webm|ogg)$/i)) {
+                alert('请输入有效的视频文件URL（.mp4, .webm, .ogg）');
+                return;
+            }
+            
+            // 直接播放视频
+            document.getElementById('video-placeholder').style.display = 'none';
+            document.getElementById('lesson-video').style.display = 'block';
+            
+            videoPlayer.src({
+                src: videoUrl,
+                type: 'video/mp4'
+            });
+            
+            videoPlayer.ready(() => {
+                videoPlayer.currentTime(0);
+                videoPlayer.play();
+            });
+        }
+
+        function browseDirectory(directoryUrl) {
+            // 在新窗口打开目录
+            window.open(directoryUrl, '_blank');
+        }
+
+        function resetVideoProgress() {
             const progressFill = document.getElementById('progress-fill');
             const progressText = document.getElementById('progress-text');
-            let progress = 0;
+            progressFill.style.width = '0%';
+            progressText.textContent = '0%';
+        }
+
+        function updateVideoProgress() {
+            if (!videoPlayer || !currentLesson) return;
             
-            const interval = setInterval(() => {
-                progress += Math.random() * 5;
-                if (progress >= 100) {
-                    progress = 100;
-                    clearInterval(interval);
-                    markLessonCompleted();
-                }
+            const currentTime = videoPlayer.currentTime();
+            const duration = videoPlayer.duration();
+            
+            if (duration > 0) {
+                const progress = (currentTime / duration) * 100;
+                const progressFill = document.getElementById('progress-fill');
+                const progressText = document.getElementById('progress-text');
                 
                 progressFill.style.width = progress + '%';
                 progressText.textContent = Math.round(progress) + '%';
+                
+                // 如果播放超过90%，标记为完成
+                if (progress >= 90 && !completedLessons.has(currentLesson)) {
+                    markLessonCompleted();
+                }
+            }
+        }
+
+        function onVideoEnded() {
+            if (currentLesson && !completedLessons.has(currentLesson)) {
+                markLessonCompleted();
+            }
+        }
+
+        function onVideoPlay() {
+            // 开始计时观看时长
+            if (watchTimeInterval) {
+                clearInterval(watchTimeInterval);
+            }
+            watchTimeInterval = setInterval(() => {
+                // 这里可以记录观看时长数据
             }, 1000);
+        }
+
+        function onVideoPause() {
+            // 停止计时观看时长
+            if (watchTimeInterval) {
+                clearInterval(watchTimeInterval);
+                watchTimeInterval = null;
+            }
         }
 
         function markLessonCompleted() {
@@ -831,11 +1530,40 @@
                     lessonElement.classList.add('completed');
                 }
                 updateProgress();
+                saveProgress();
+                
+                // 显示完成通知
+                showCompletionNotification();
             }
         }
 
+        function showCompletionNotification() {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+                color: white;
+                padding: 15px 25px;
+                border-radius: 10px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+                z-index: 10000;
+                font-weight: bold;
+                animation: slideIn 0.3s ease-out;
+            `;
+            notification.innerHTML = '🎉 恭喜！课程已完成！';
+            
+            document.body.appendChild(notification);
+            
+            // 3秒后自动移除
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+
         function updateProgress() {
-            const totalLessons = 35; // 总课程数
+            const totalLessons = Object.keys(courseData).length; // 总课程数
             const completed = completedLessons.size;
             const progressPercentage = (completed / totalLessons) * 100;
             
@@ -843,18 +1571,32 @@
             
             // 更新整体进度
             currentProgress = progressPercentage;
+            
+            // 更新已完成课程的显示状态
+            completedLessons.forEach(lessonId => {
+                const lessonElement = document.querySelector(`[data-lesson="${lessonId}"]`);
+                if (lessonElement) {
+                    lessonElement.classList.add('completed');
+                }
+            });
         }
 
         function playVideo() {
-            alert('🎬 视频播放功能需要集成实际的视频播放器');
+            if (videoPlayer) {
+                videoPlayer.play();
+            }
         }
 
         function pauseVideo() {
-            alert('⏸️ 视频暂停功能需要集成实际的视频播放器');
+            if (videoPlayer) {
+                videoPlayer.pause();
+            }
         }
 
         function fullScreen() {
-            alert('🖥️ 全屏功能需要集成实际的视频播放器');
+            if (videoPlayer) {
+                videoPlayer.requestFullscreen();
+            }
         }
 
         function previousLesson() {

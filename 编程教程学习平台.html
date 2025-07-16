@@ -1117,7 +1117,16 @@
                 responsive: true,
                 playbackRates: [0.5, 1, 1.25, 1.5, 2],
                 controls: true,
-                preload: 'metadata'
+                preload: 'metadata',
+                crossOrigin: 'anonymous',
+                html5: {
+                    vhs: {
+                        overrideNative: true
+                    },
+                    nativeVideoTracks: false,
+                    nativeAudioTracks: false,
+                    nativeTextTracks: false
+                }
             });
             
             // 监听视频事件
@@ -1249,12 +1258,25 @@
             document.getElementById('video-placeholder').style.display = 'none';
             document.getElementById('lesson-video').style.display = 'block';
             
-            // 加载视频
+            // 加载视频 - 尝试多种格式和方法
             try {
-                videoPlayer.src({
-                    src: videoUrl,
-                    type: 'video/mp4'
-                });
+                // 方法1：尝试多种视频格式
+                const sources = [
+                    {
+                        src: videoUrl,
+                        type: 'video/mp4'
+                    },
+                    {
+                        src: videoUrl,
+                        type: 'video/mp4; codecs="avc1.42E01E, mp4a.40.2"'
+                    },
+                    {
+                        src: videoUrl,
+                        type: 'application/octet-stream'
+                    }
+                ];
+                
+                videoPlayer.src(sources);
                 
                 // 重置播放器
                 videoPlayer.ready(() => {
@@ -1262,6 +1284,15 @@
                     videoPlayer.pause();
                     console.log('视频加载完成，准备播放');
                 });
+                
+                // 如果VideoJS加载失败，尝试原生HTML5 video
+                setTimeout(() => {
+                    if (videoPlayer.error()) {
+                        console.log('VideoJS加载失败，尝试原生HTML5播放器');
+                        fallbackToNativePlayer(videoUrl);
+                    }
+                }, 3000);
+                
             } catch (error) {
                 console.error('视频加载失败:', error);
                 showVideoError('视频加载时出现错误: ' + error.message);
@@ -1895,6 +1926,166 @@
         function openVideoInNewTab() {
             if (currentLesson && courseData[currentLesson]) {
                 window.open(courseData[currentLesson].videoUrl, '_blank');
+            }
+        }
+
+        function fallbackToNativePlayer(videoUrl) {
+            console.log('切换到原生HTML5播放器');
+            
+            // 隐藏VideoJS播放器
+            document.getElementById('lesson-video').style.display = 'none';
+            
+            // 创建原生HTML5播放器
+            const videoContainer = document.querySelector('.video-container');
+            const nativeVideo = document.createElement('video');
+            nativeVideo.id = 'native-video';
+            nativeVideo.controls = true;
+            nativeVideo.style.cssText = 'width: 100%; height: 100%; position: absolute; top: 0; left: 0; background: black;';
+            nativeVideo.crossOrigin = 'anonymous';
+            
+            // 添加多种视频源
+            const sources = [
+                { src: videoUrl, type: 'video/mp4' },
+                { src: videoUrl, type: 'video/mp4; codecs="avc1.42E01E, mp4a.40.2"' },
+                { src: videoUrl, type: 'application/octet-stream' }
+            ];
+            
+            sources.forEach(source => {
+                const sourceElement = document.createElement('source');
+                sourceElement.src = source.src;
+                sourceElement.type = source.type;
+                nativeVideo.appendChild(sourceElement);
+            });
+            
+            // 添加错误处理
+            nativeVideo.onerror = function() {
+                console.error('原生播放器也失败了，尝试iframe方案');
+                fallbackToIframe(videoUrl);
+            };
+            
+            nativeVideo.onloadedmetadata = function() {
+                console.log('原生播放器加载成功');
+                showVideoSuccess('已切换到原生播放器，视频加载成功！');
+            };
+            
+            nativeVideo.oncanplay = function() {
+                console.log('原生播放器可以播放');
+            };
+            
+            // 清除现有的原生播放器
+            const existingNative = document.getElementById('native-video');
+            if (existingNative) {
+                existingNative.remove();
+            }
+            
+            // 添加到容器
+            videoContainer.appendChild(nativeVideo);
+            
+            // 隐藏占位符
+            document.getElementById('video-placeholder').style.display = 'none';
+        }
+
+        function showVideoSuccess(message) {
+            const placeholder = document.getElementById('video-placeholder');
+            placeholder.innerHTML = `
+                <div style="text-align: center; padding: 20px; background: #e8f5e8; border-radius: 10px; margin: 20px;">
+                    <div style="font-size: 2em; margin-bottom: 10px; color: #4caf50;">✅</div>
+                    <p style="color: #2e7d32; font-weight: bold;">${message}</p>
+                </div>
+            `;
+            
+            document.getElementById('video-placeholder').style.display = 'block';
+            
+            // 3秒后隐藏成功消息
+            setTimeout(() => {
+                document.getElementById('video-placeholder').style.display = 'none';
+            }, 3000);
+        }
+
+        function fallbackToIframe(videoUrl) {
+            console.log('尝试iframe方案');
+            
+            // 隐藏原生播放器
+            const existingNative = document.getElementById('native-video');
+            if (existingNative) {
+                existingNative.remove();
+            }
+            
+            const placeholder = document.getElementById('video-placeholder');
+            placeholder.innerHTML = `
+                <div style="text-align: center; padding: 20px;">
+                    <div style="background: #fff3cd; border: 1px solid #ffeaa7; border-radius: 10px; padding: 20px; margin-bottom: 20px;">
+                        <div style="font-size: 2em; margin-bottom: 10px; color: #856404;">⚠️</div>
+                        <h3 style="color: #856404; margin-bottom: 10px;">视频播放受限</h3>
+                        <p style="color: #856404; margin-bottom: 20px;">
+                            由于CORS跨域限制，无法直接播放视频。<br>
+                            请尝试以下解决方案：
+                        </p>
+                        
+                        <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+                            <button onclick="openVideoInNewTab()" 
+                                    style="padding: 10px 20px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                                🔗 在新标签页播放
+                            </button>
+                            <button onclick="showVideoDirectory()" 
+                                    style="padding: 10px 20px; background: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                                📁 浏览视频目录
+                            </button>
+                            <button onclick="copyVideoUrl()" 
+                                    style="padding: 10px 20px; background: #6c757d; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                                📋 复制视频链接
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; text-align: left;">
+                        <h4 style="color: #495057; margin-bottom: 15px;">💡 解决CORS问题的方法：</h4>
+                        <ul style="color: #6c757d; margin-left: 20px; line-height: 1.6;">
+                            <li><strong>Chrome用户：</strong> 安装"CORS Unblock"扩展</li>
+                            <li><strong>Firefox用户：</strong> 安装"CORS Everywhere"扩展</li>
+                            <li><strong>手动方法：</strong> 右键视频链接选择"在新标签页中打开"</li>
+                            <li><strong>下载观看：</strong> 将视频链接复制到下载工具中</li>
+                        </ul>
+                    </div>
+                    
+                    <div style="margin-top: 20px; padding: 15px; background: #e9ecef; border-radius: 8px;">
+                        <p style="color: #495057; font-size: 0.9em; margin: 0;">
+                            <strong>当前视频URL：</strong><br>
+                            <code style="background: white; padding: 5px; border-radius: 3px; word-break: break-all; font-size: 0.8em;">
+                                ${videoUrl}
+                            </code>
+                        </p>
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('video-placeholder').style.display = 'block';
+            document.getElementById('lesson-video').style.display = 'none';
+        }
+
+        function showVideoDirectory() {
+            if (currentLesson && courseData[currentLesson]) {
+                const videoUrl = courseData[currentLesson].videoUrl;
+                const directoryUrl = videoUrl.substring(0, videoUrl.lastIndexOf('/') + 1);
+                window.open(directoryUrl, '_blank');
+            }
+        }
+
+        function copyVideoUrl() {
+            if (currentLesson && courseData[currentLesson]) {
+                const videoUrl = courseData[currentLesson].videoUrl;
+                navigator.clipboard.writeText(videoUrl).then(() => {
+                    alert('视频链接已复制到剪贴板！');
+                }).catch(() => {
+                    // 备用复制方法
+                    const textArea = document.createElement('textarea');
+                    textArea.value = videoUrl;
+                    document.body.appendChild(textArea);
+                    textArea.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(textArea);
+                    alert('视频链接已复制到剪贴板！');
+                });
             }
         }
 

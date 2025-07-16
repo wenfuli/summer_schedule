@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌟 小学一升二年级暑假学习计划表</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', 'PingFang SC', 'Hiragino Sans GB', 'WenQuanYi Micro Hei', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+
+        h2 {
+            color: #333;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+            margin: 40px 0 20px 0;
+            font-size: 1.8em;
+        }
+
+        h3 {
+            color: #e74c3c;
+            margin: 30px 0 15px 0;
+            font-size: 1.4em;
+        }
+
+        hr {
+            border: none;
+            height: 2px;
+            background: linear-gradient(to right, #3498db, #9b59b6);
+            margin: 30px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ecf0f1;
+        }
+
+        th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        tr:hover {
+            background-color: #e8f4f8;
+            transition: background-color 0.3s ease;
+        }
+
+        .time-cell {
+            font-weight: bold;
+            color: #2c3e50;
+            text-align: center;
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            padding: 2px 8px;
+            border-radius: 15px;
+            font-weight: bold;
+        }
+
+        .mermaid {
+            text-align: center;
+            margin: 30px 0;
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #ecf0f1;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: #ecf0f1;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 5px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            transition: width 0.3s ease;
+        }
+
+        .important-reminder {
+            background: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 30px 0;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .important-reminder h3 {
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .checklist {
+            background: #e8f5e8;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #27ae60;
+        }
+
+        .contact-info {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 30px 0;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #ecf0f1;
+            color: #7f8c8d;
+            font-style: italic;
+        }
+
+        .phase-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-left: 5px solid #3498db;
+        }
+
+        .emoji {
+            font-size: 1.2em;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            table {
+                font-size: 0.9em;
+            }
+            
+            th, td {
+                padding: 10px;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .container {
+                box-shadow: none;
+                border-radius: 0;
+                padding: 20px;
+            }
+            
+            .mermaid {
+                break-inside: avoid;
+            }
+            
+            table {
+                break-inside: avoid;
+            }
+            
+            .phase-card {
+                break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌟 小学一升二年级暑假学习计划表</h1>
+        <div class="subtitle">📅 2025年7月16日 - 8月30日</div>
+
+        <hr>
+
+        <h2>📊 阶段概览</h2>
+        <div class="mermaid">
+            timeline
+                title 暑假学习时间轴
+                
+                section 第一阶段 (7/16-8/2)
+                    暑假作业完成期 : 语文作业
+                                    : 数学作业
+                                    : 英语作业
+                                    : 体育作业
+                
+                section 第二阶段 (8/3-8/30)
+                    能力提升期     : 语文拓展
+                                    : 数学预习
+                                    : 英语提升
+                                    : 开学准备
+        </div>
+
+        <hr>
+
+        <h2>⏰ 第一阶段：暑假作业完成期 (7/16-8/2)</h2>
+
+        <h3>📋 每日作息时间表</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>🕐 时间</th>
+                    <th>📚 工作日 (周一-周五)</th>
+                    <th>🎯 周六</th>
+                    <th>🎯 周日</th>
+                    <th>📝 备注</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="time-cell"><strong>08:00-08:30</strong></td>
+                    <td>🍽️ 早餐</td>
+                    <td>🍽️ 早餐</td>
+                    <td>🍽️ 早餐</td>
+                    <td>营养均衡</td>
+                </tr>
+                <tr>
+                    <td class="time-cell"><strong>08:30-09:30</strong></td>
+                    <td>📝 语文暑假作业</td>
+                    <td>📝 语文暑假作业</td>
+                    <td>📝 语文暑假作业</td>
+                    <td>每日1小时</td>
+                </tr>
+                <tr>
+                    <td class="time-cell"><strong>09:30-12:00</strong></td>
+                    <td><span class="highlight">📚 英语绘本课</span></td>
+                    <td>📖 自由活动/阅读</td>
+                    <td>📖 自由活动/阅读</td>
+                    <td><strong>仅工作日有课</strong></td>
+                </tr>
+                <tr>
+                    <td class="time-cell"><strong>12:00-13:00</strong></td>
+                    <td>🍽️ 午餐</td>
+                    <td>🍽️ 午餐</td>
+                    <td>🍽️ 午餐</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="time-cell"><strong>13:00-14:00</strong></td>
+                    <td>😴 午休</td>
+                    <td>😴 午休</td>
+                    <td>😴 午休</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="time-cell"><strong>14:00-15:00</strong></td>
+                    <td><span class="highlight">🏊 游泳课</span></td>
+                    <td><span class="highlight">🏊 游泳课</span></td>
+                    <td><span class="highlight">🏊 游泳课</span></td>
+                    <td><strong>每日固定</strong></td>
+                </tr>
+                <tr>
+                    <td class="time-cell"><strong>15:00-15:30</strong></td>
+                    <td>☕ 休息/点心</td>
+                    <td>☕ 休息/点心</td>
+                    <td>☕ 休息/点心</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="time-cell"><strong>15:30-16:30</strong></td>
+                    <td>🏃 体育活动</td>
+                    <td><span class="highlight">💻 编程课</span></td>
+                    <td>🏃 体育活动</td>
+                    <td>周六编程课</td>
+                </tr>
+                <tr>
+                    <td class="time-cell"><strong>16:30-17:30</strong></td>
+                    <td>🔢 数学暑假作业</td>
+                    <td>🔢 数学暑假作业</td>
+                    <td>🔢 数学暑假作业</td>
+                    <td>每日1小时</td>
+                </tr>
+                <tr>
+                    <td class="time-cell"><strong>17:30-18:00</strong></td>
+                    <td>🔤 英语暑假作业</td>
+                    <td>🔤 英语暑假作业</td>
+                    <td><span class="highlight">🔢 数学网课</span></td>
+                    <td>周日数学网课</td>
+                </tr>
+                <tr>
+                    <td class="time-cell"><strong>18:00-19:00</strong></td>
+                    <td>🍽️ 晚餐</td>
+                    <td>🍽️ 晚餐</td>
+                    <td>🍽️ 晚餐</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="time-cell"><strong>19:00-20:00</strong></td>
+                    <td>📖 家庭时间/看书</td>
+                    <td><span class="highlight">📚 语文阅读网课</span></td>
+                    <td><span class="highlight">📚 语文阅读网课</span></td>
+                    <td>周末网课</td>
+                </tr>
+                <tr>
+                    <td class="time-cell"><strong>20:00-21:00</strong></td>
+                    <td>🛏️ 准备睡觉</td>
+                    <td>🛏️ 准备睡觉</td>
+                    <td>🛏️ 准备睡觉</td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>🎯 第一阶段网课时间分布</h3>
+        <div class="mermaid">
+            graph TB
+                subgraph "🗓️ 第一阶段网课安排"
+                    A[📚 英语绘本课]
+                    B[🔢 数学网课]
+                    C[📖 语文阅读网课]
+                    D[💻 编程课]
+                end
+                
+                subgraph "📅 周一到周五"
+                    E[9:30-12:00<br/>📚 英语绘本课<br/>⏰ 2.5小时]
+                end
+                
+                subgraph "📅 周二"
+                    F[19:00-20:00<br/>🔢 数学网课<br/>⏰ 1小时]
+                end
+                
+                subgraph "📅 周六"
+                    G[15:30-16:30<br/>💻 编程课<br/>⏰ 1小时]
+                    H[19:00-20:00<br/>📖 语文阅读网课<br/>⏰ 1小时]
+                end
+                
+                subgraph "📅 周日"
+                    I[17:30-18:00<br/>🔢 数学网课<br/>⏰ 30分钟]
+                    J[19:00-20:00<br/>📖 语文阅读网课<br/>⏰ 1小时]
+                end
+                
+                A --> E
+                B --> F
+                B --> I
+                C --> H
+                C --> J
+                D --> G
+                
+                style A fill:#FFE4B5,stroke:#333,stroke-width:2px
+                style B fill:#E0F6FF,stroke:#333,stroke-width:2px
+                style C fill:#E8F5E8,stroke:#333,stroke-width:2px
+                style D fill:#F0E6FF,stroke:#333,stroke-width:2px
+                style E fill:#FFE4B5,stroke:#333,stroke-width:1px
+                style F fill:#E0F6FF,stroke:#333,stroke-width:1px
+                style G fill:#F0E6FF,stroke:#333,stroke-width:1px
+                style H fill:#E8F5E8,stroke:#333,stroke-width:1px
+                style I fill:#E0F6FF,stroke:#333,stroke-width:1px
+                style J fill:#E8F5E8,stroke:#333,stroke-width:1px
+        </div>
+
+        <hr>
+
+        <h2>⏰ 第二阶段：能力提升期 (8/3-8/30)</h2>
+
+        <h3>📋 每日作息时间表</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>🕐 时间</th>
+                    <th>📚 工作日 (周一-周五)</th>
+                    <th>🎯 周六</th>
+                    <th>🎯 周日</th>
+                    <th>📝 备注</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="time-cell"><strong>08:00-08:30</strong></td>
+                    <td>🍽️ 早餐</td>
+                    <td>🍽️ 早餐</td>
+                    <td>🍽️ 早餐</td>
+                    <td>营养均衡</td>
+                </tr>
+                <tr>
+                    <td class="time-cell"><strong>08:30-09:30</strong></td>
+                    <td>📝 语文拓展学习</td>
+                    <td>📝 语文拓展学习</td>
+                    <td>📝 语文拓展学习</td>
+                    <td>阅读写作</td>
+                </tr>
+                <tr>
+                    <td class="time-cell"><strong>09:30-10:00</strong></td>
+                    <td><span class="highlight">📚 英语绘本课</span></td>
+                    <td>📖 自由活动/阅读</td>
+                    <td>📖 自由活动/阅读</td>
+                    <td><strong>仅工作日有课</strong></td>
+                </tr>
+                <tr>
+                    <td class="time-cell"><strong>10:00-10:15</strong></td>
+                    <td>☕ 休息</td>
+                    <td>☕ 休息</td>
+                    <td>☕ 休息</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="time-cell"><strong>10:15-11:15</strong></td>
+                    <td>🔢 数学预习/提升</td>
+                    <td>🔢 数学预习/提升</td>
+                    <td>🔢 数学预习/提升</td>
+                    <td>二年级预习</td>
+                </tr>
+                <tr>
+                    <td class="time-cell"><strong>11:15-12:00</strong></td>
+                    <td>📖 自由活动/阅读</td>
+                    <td>📖 自由活动/阅读</td>
+                    <td><span class="highlight">🔢 数学网课</span></td>
+                    <td>周日数学网课</td>
+                </tr>
+                <tr>
+                    <td class="time-cell"><strong>12:00-13:00</strong></td>
+                    <td>🍽️ 午餐</td>
+                    <td>🍽️ 午餐</td>
+                    <td>🍽️ 午餐</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="time-cell"><strong>13:00-14:00</strong></td>
+                    <td>😴 午休</td>
+                    <td>😴 午休</td>
+                    <td>😴 午休</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="time-cell"><strong>14:00-15:00</strong></td>
+                    <td><span class="highlight">🏊 游泳课</span></td>
+                    <td><span class="highlight">🏊 游泳课</span></td>
+                    <td><span class="highlight">🏊 游泳课</span></td>
+                    <td><strong>每日固定</strong></td>
+                </tr>
+                <tr>
+                    <td class="time-cell"><strong>15:00-15:30</strong></td>
+                    <td>☕ 休息/点心</td>
+                    <td>☕ 休息/点心</td>
+                    <td>☕ 休息/点心</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="time-cell"><strong>15:30-16:30</strong></td>
+                    <td>🏃 体育活动</td>
+                    <td><span class="highlight">💻 编程课</span></td>
+                    <td>🏃 体育活动</td>
+                    <td>周六编程课</td>
+                </tr>
+                <tr>
+                    <td class="time-cell"><strong>16:30-17:30</strong></td>
+                    <td>🔤 英语拓展学习</td>
+                    <td>🔤 英语拓展学习</td>
+                    <td>🔤 英语拓展学习</td>
+                    <td>单词口语</td>
+                </tr>
+                <tr>
+                    <td class="time-cell"><strong>17:30-18:00</strong></td>
+                    <td>✏️ 练字/手工/艺术</td>
+                    <td>✏️ 练字/手工/艺术</td>
+                    <td><span class="highlight">📚 语文阅读网课</span></td>
+                    <td>周日语文网课</td>
+                </tr>
+                <tr>
+                    <td class="time-cell"><strong>18:00-19:00</strong></td>
+                    <td>🍽️ 晚餐</td>
+                    <td>🍽️ 晚餐</td>
+                    <td>🍽️ 晚餐</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="time-cell"><strong>19:00-20:00</strong></td>
+                    <td>📖 家庭时间/看书</td>
+                    <td><span class="highlight">📚 语文阅读网课</span></td>
+                    <td>📖 家庭时间/看书</td>
+                    <td>周六语文网课</td>
+                </tr>
+                <tr>
+                    <td class="time-cell"><strong>20:00-21:00</strong></td>
+                    <td>🛏️ 准备睡觉</td>
+                    <td>🛏️ 准备睡觉</td>
+                    <td>🛏️ 准备睡觉</td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>🎯 第二阶段网课时间分布</h3>
+        <div class="mermaid">
+            graph TB
+                subgraph "🗓️ 第二阶段网课安排"
+                    A[📚 英语绘本课]
+                    B[🔢 数学网课]
+                    C[📖 语文阅读网课]
+                    D[💻 编程课]
+                end
+                
+                subgraph "📅 周一到周五"
+                    E[9:30-10:00<br/>📚 英语绘本课<br/>⏰ 30分钟]
+                end
+                
+                subgraph "📅 周二"
+                    F[11:15-12:00<br/>🔢 数学网课<br/>⏰ 45分钟]
+                end
+                
+                subgraph "📅 周六"
+                    G[15:30-16:30<br/>💻 编程课<br/>⏰ 1小时]
+                    H[19:00-20:00<br/>📖 语文阅读网课<br/>⏰ 1小时]
+                end
+                
+                subgraph "📅 周日"
+                    I[11:15-12:00<br/>🔢 数学网课<br/>⏰ 45分钟]
+                    J[17:30-18:00<br/>📖 语文阅读网课<br/>⏰ 30分钟]
+                end
+                
+                A --> E
+                B --> F
+                B --> I
+                C --> H
+                C --> J
+                D --> G
+                
+                style A fill:#FFE4B5,stroke:#333,stroke-width:2px
+                style B fill:#E0F6FF,stroke:#333,stroke-width:2px
+                style C fill:#E8F5E8,stroke:#333,stroke-width:2px
+                style D fill:#F0E6FF,stroke:#333,stroke-width:2px
+                style E fill:#FFE4B5,stroke:#333,stroke-width:1px
+                style F fill:#E0F6FF,stroke:#333,stroke-width:1px
+                style G fill:#F0E6FF,stroke:#333,stroke-width:1px
+                style H fill:#E8F5E8,stroke:#333,stroke-width:1px
+                style I fill:#E0F6FF,stroke:#333,stroke-width:1px
+                style J fill:#E8F5E8,stroke:#333,stroke-width:1px
+        </div>
+
+        <hr>
+
+        <h2>📊 网课时间对比表</h2>
+
+        <h3>🎯 第一阶段 vs 第二阶段网课时间对比</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>📚 课程类型</th>
+                    <th>🎯 第一阶段</th>
+                    <th>🌟 第二阶段</th>
+                    <th>📈 变化</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>📚 英语绘本课</strong></td>
+                    <td>工作日 9:30-12:00<br/>⏰ 每次2.5小时</td>
+                    <td>工作日 9:30-10:00<br/>⏰ 每次30分钟</td>
+                    <td>🔻 时间大幅缩短</td>
+                </tr>
+                <tr>
+                    <td><strong>🔢 数学网课</strong></td>
+                    <td>周二 19:00-20:00<br/>周日 17:30-18:00<br/>⏰ 每周1.5小时</td>
+                    <td>周二 11:15-12:00<br/>周日 11:15-12:00<br/>⏰ 每周1.5小时</td>
+                    <td>🔄 时间调整</td>
+                </tr>
+                <tr>
+                    <td><strong>📖 语文阅读网课</strong></td>
+                    <td>周六 19:00-20:00<br/>周日 19:00-20:00<br/>⏰ 每周2小时</td>
+                    <td>周六 19:00-20:00<br/>周日 17:30-18:00<br/>⏰ 每周1.5小时</td>
+                    <td>🔻 时间略减</td>
+                </tr>
+                <tr>
+                    <td><strong>💻 编程课</strong></td>
+                    <td>周六 15:30-16:30<br/>⏰ 每周1小时</td>
+                    <td>周六 15:30-16:30<br/>⏰ 每周1小时</td>
+                    <td>✅ 时间不变</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <hr>
+
+        <h2>📅 完整日程安排</h2>
+
+        <div class="phase-card">
+            <h3>🗓️ 第一阶段 (7/16-8/2) - 暑假作业完成期</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>📅 日期</th>
+                        <th>📆 星期</th>
+                        <th>🎯 特殊安排</th>
+                        <th>📚 重点任务</th>
+                        <th>✅ 进度</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>7/16</td>
+                        <td>周二</td>
+                        <td>英语绘本课 + 数学网课(19:00)</td>
+                        <td>开始暑假作业</td>
+                        <td>6%</td>
+                    </tr>
+                    <tr>
+                        <td>7/17</td>
+                        <td>周三</td>
+                        <td>英语绘本课</td>
+                        <td>语文作业重点</td>
+                        <td>12%</td>
+                    </tr>
+                    <tr>
+                        <td>7/18</td>
+                        <td>周四</td>
+                        <td>英语绘本课</td>
+                        <td>数学作业重点</td>
+                        <td>18%</td>
+                    </tr>
+                    <tr>
+                        <td>7/19</td>
+                        <td>周五</td>
+                        <td>英语绘本课</td>
+                        <td>英语作业重点</td>
+                        <td>24%</td>
+                    </tr>
+                    <tr>
+                        <td>7/20</td>
+                        <td>周六</td>
+                        <td>编程课 + 语文阅读网课</td>
+                        <td>🔥 双课程日</td>
+                        <td>30%</td>
+                    </tr>
+                    <tr>
+                        <td>7/21</td>
+                        <td>周日</td>
+                        <td>数学网课 + 语文阅读网课</td>
+                        <td>🔥 双课程日</td>
+                        <td>36%</td>
+                    </tr>
+                    <tr>
+                        <td>7/22</td>
+                        <td>周一</td>
+                        <td>英语绘本课</td>
+                        <td>新一周开始</td>
+                        <td>42%</td>
+                    </tr>
+                    <tr>
+                        <td>7/23</td>
+                        <td>周二</td>
+                        <td>英语绘本课 + 数学网课(19:00)</td>
+                        <td>语文作业重点</td>
+                        <td>48%</td>
+                    </tr>
+                    <tr>
+                        <td>7/24</td>
+                        <td>周三</td>
+                        <td>英语绘本课</td>
+                        <td>数学作业重点</td>
+                        <td>54%</td>
+                    </tr>
+                    <tr>
+                        <td>7/25</td>
+                        <td>周四</td>
+                        <td>英语绘本课</td>
+                        <td>英语作业重点</td>
+                        <td>60%</td>
+                    </tr>
+                    <tr>
+                        <td>7/26</td>
+                        <td>周五</td>
+                        <td>英语绘本课</td>
+                        <td>体育作业重点</td>
+                        <td>66%</td>
+                    </tr>
+                    <tr>
+                        <td>7/27</td>
+                        <td>周六</td>
+                        <td>编程课 + 语文阅读网课</td>
+                        <td>🔥 双课程日</td>
+                        <td>72%</td>
+                    </tr>
+                    <tr>
+                        <td>7/28</td>
+                        <td>周日</td>
+                        <td>数学网课 + 语文阅读网课</td>
+                        <td>🔥 双课程日</td>
+                        <td>78%</td>
+                    </tr>
+                    <tr>
+                        <td>7/29</td>
+                        <td>周一</td>
+                        <td>英语绘本课</td>
+                        <td>作业检查</td>
+                        <td>84%</td>
+                    </tr>
+                    <tr>
+                        <td>7/30</td>
+                        <td>周二</td>
+                        <td>英语绘本课 + 数学网课(19:00)</td>
+                        <td>语文作业重点</td>
+                        <td>90%</td>
+                    </tr>
+                    <tr>
+                        <td>7/31</td>
+                        <td>周三</td>
+                        <td>英语绘本课</td>
+                        <td>数学作业重点</td>
+                        <td>96%</td>
+                    </tr>
+                    <tr>
+                        <td>8/1</td>
+                        <td>周四</td>
+                        <td>英语绘本课</td>
+                        <td>英语作业重点</td>
+                        <td>100%</td>
+                    </tr>
+                    <tr style="background-color: #d4edda;">
+                        <td>8/2</td>
+                        <td>周五</td>
+                        <td>英语绘本课</td>
+                        <td>🎉 <strong>暑假作业完成</strong></td>
+                        <td>100%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="phase-card">
+            <h3>🗓️ 第二阶段 (8/3-8/30) - 能力提升期</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>📅 日期</th>
+                        <th>📆 星期</th>
+                        <th>🎯 特殊安排</th>
+                        <th>📚 重点任务</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="background-color: #fff3cd;">
+                        <td>8/3</td>
+                        <td>周六</td>
+                        <td>编程课 + 语文阅读网课</td>
+                        <td>🚀 <strong>开始能力提升</strong></td>
+                    </tr>
+                    <tr>
+                        <td>8/4</td>
+                        <td>周日</td>
+                        <td>数学网课 + 语文阅读网课</td>
+                        <td>🔥 双课程日</td>
+                    </tr>
+                    <tr>
+                        <td>8/5</td>
+                        <td>周一</td>
+                        <td>英语绘本课</td>
+                        <td>语文拓展学习</td>
+                    </tr>
+                    <tr>
+                        <td>8/6</td>
+                        <td>周二</td>
+                        <td>英语绘本课 + 数学网课</td>
+                        <td>语文阅读重点</td>
+                    </tr>
+                    <tr>
+                        <td>8/7</td>
+                        <td>周三</td>
+                        <td>英语绘本课</td>
+                        <td>数学预习重点</td>
+                    </tr>
+                    <tr>
+                        <td>8/8</td>
+                        <td>周四</td>
+                        <td>英语绘本课</td>
+                        <td>英语拓展重点</td>
+                    </tr>
+                    <tr>
+                        <td>8/9</td>
+                        <td>周五</td>
+                        <td>英语绘本课</td>
+                        <td>周总结</td>
+                    </tr>
+                    <tr>
+                        <td>8/10</td>
+                        <td>周六</td>
+                        <td>编程课 + 语文阅读网课</td>
+                        <td>🔥 双课程日</td>
+                    </tr>
+                    <tr>
+                        <td>8/11</td>
+                        <td>周日</td>
+                        <td>数学网课 + 语文阅读网课</td>
+                        <td>🔥 双课程日</td>
+                    </tr>
+                    <tr>
+                        <td>8/12</td>
+                        <td>周一</td>
+                        <td>英语绘本课</td>
+                        <td>新一周开始</td>
+                    </tr>
+                    <tr>
+                        <td>8/13</td>
+                        <td>周二</td>
+                        <td>英语绘本课 + 数学网课</td>
+                        <td>语文阅读重点</td>
+                    </tr>
+                    <tr>
+                        <td>8/14</td>
+                        <td>周三</td>
+                        <td>英语绘本课</td>
+                        <td>数学预习重点</td>
+                    </tr>
+                    <tr>
+                        <td>8/15</td>
+                        <td>周四</td>
+                        <td>英语绘本课</td>
+                        <td>英语拓展重点</td>
+                    </tr>
+                    <tr>
+                        <td>8/16</td>
+                        <td>周五</td>
+                        <td>英语绘本课</td>
+                        <td>周总结</td>
+                    </tr>
+                    <tr>
+                        <td>8/17</td>
+                        <td>周六</td>
+                        <td>编程课 + 语文阅读网课</td>
+                        <td>🔥 双课程日</td>
+                    </tr>
+                    <tr>
+                        <td>8/18</td>
+                        <td>周日</td>
+                        <td>数学网课 + 语文阅读网课</td>
+                        <td>🔥 双课程日</td>
+                    </tr>
+                    <tr>
+                        <td>8/19</td>
+                        <td>周一</td>
+                        <td>英语绘本课</td>
+                        <td>新一周开始</td>
+                    </tr>
+                    <tr>
+                        <td>8/20</td>
+                        <td>周二</td>
+                        <td>英语绘本课 + 数学网课</td>
+                        <td>语文阅读重点</td>
+                    </tr>
+                    <tr>
+                        <td>8/21</td>
+                        <td>周三</td>
+                        <td>英语绘本课</td>
+                        <td>数学预习重点</td>
+                    </tr>
+                    <tr>
+                        <td>8/22</td>
+                        <td>周四</td>
+                        <td>英语绘本课</td>
+                        <td>英语拓展重点</td>
+                    </tr>
+                    <tr>
+                        <td>8/23</td>
+                        <td>周五</td>
+                        <td>英语绘本课</td>
+                        <td>周总结</td>
+                    </tr>
+                    <tr>
+                        <td>8/24</td>
+                        <td>周六</td>
+                        <td>编程课 + 语文阅读网课</td>
+                        <td>🔥 双课程日</td>
+                    </tr>
+                    <tr>
+                        <td>8/25</td>
+                        <td>周日</td>
+                        <td>数学网课 + 语文阅读网课</td>
+                        <td>🔥 双课程日</td>
+                    </tr>
+                    <tr style="background-color: #d1ecf1;">
+                        <td>8/26</td>
+                        <td>周一</td>
+                        <td>英语绘本课</td>
+                        <td>📚 开学准备周</td>
+                    </tr>
+                    <tr style="background-color: #d1ecf1;">
+                        <td>8/27</td>
+                        <td>周二</td>
+                        <td>英语绘本课 + 数学网课</td>
+                        <td>📚 开学准备</td>
+                    </tr>
+                    <tr style="background-color: #d1ecf1;">
+                        <td>8/28</td>
+                        <td>周三</td>
+                        <td>英语绘本课</td>
+                        <td>📚 开学准备</td>
+                    </tr>
+                    <tr style="background-color: #d1ecf1;">
+                        <td>8/29</td>
+                        <td>周四</td>
+                        <td>英语绘本课</td>
+                        <td>📚 开学准备</td>
+                    </tr>
+                    <tr style="background-color: #d4edda;">
+                        <td>8/30</td>
+                        <td>周五</td>
+                        <td>英语绘本课</td>
+                        <td>🎊 <strong>暑假学习结束</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <hr>
+
+        <div class="important-reminder">
+            <h2>🚨 重要提醒</h2>
+            
+            <h3>⚠️ 关键时间点</h3>
+            <ul>
+                <li>🔹 <strong>英语绘本课</strong>：仅工作日有课(周一-周五)，周末无课</li>
+                <li>🔹 <strong>游泳课</strong>：每天下午14:00-15:00，雷打不动</li>
+                <li>🔹 <strong>编程课</strong>：每周六下午15:30-16:30固定时间</li>
+                <li>🔹 <strong>数学网课</strong>：周二(晚上/中午) + 周日(时间因阶段而异)</li>
+                <li>🔹 <strong>语文阅读网课</strong>：周六 + 周日，时间因阶段而异</li>
+            </ul>
+
+            <h3>💡 执行建议</h3>
+            <ol>
+                <li>📝 <strong>每日检查</strong>：睡前检查当日学习任务完成情况</li>
+                <li>📊 <strong>周末总结</strong>：每周末回顾学习进度和效果</li>
+                <li>🏃 <strong>劳逸结合</strong>：保证充足睡眠和体育锻炼</li>
+                <li>🎯 <strong>灵活调整</strong>：根据实际情况微调时间安排</li>
+            </ol>
+        </div>
+
+        <hr>
+
+        <h2>📋 家长配合要点</h2>
+
+        <div class="checklist">
+            <h3>👨‍👩‍👧‍👦 家长任务清单</h3>
+            <ul>
+                <li>✅ 监督孩子按时完成每日作业</li>
+                <li>✅ 确保网课设备和网络正常</li>
+                <li>✅ 陪同孩子参加游泳课和体育活动</li>
+                <li>✅ 定期检查作业完成质量</li>
+                <li>✅ 营造良好的学习环境</li>
+            </ul>
+
+            <h3>🎯 学习目标</h3>
+            <ul>
+                <li><strong>第一阶段</strong>：按时完成所有暑假作业，保持良好学习习惯</li>
+                <li><strong>第二阶段</strong>：拓展知识面，提升能力，为新学期做准备</li>
+                <li><strong>全程目标</strong>：培养自主学习能力，保持身心健康</li>
+            </ul>
+        </div>
+
+        <hr>
+
+        <div class="contact-info">
+            <h2>📞 联系方式</h2>
+            <p>如有任何问题或需要调整，请及时沟通：</p>
+            <ul>
+                <li>📧 家长微信群：及时反馈学习情况</li>
+                <li>📱 紧急联系：确保孩子安全和学习顺利</li>
+            </ul>
+        </div>
+
+        <hr>
+
+        <div class="footer">
+            <p><em>📄 建议使用支持Markdown的阅读器查看，或打印成A4纸张贴在显眼位置便于日常参考</em></p>
+            <br>
+            <p><strong>制表日期：2025年7月16日</strong></p>
+            <p><strong>适用对象：小学一升二年级学生</strong></p>
+            <p><strong>计划周期：46天（2025年7月16日-8月30日）</strong></p>
+        </div>
+    </div>
+
+    <script>
+        // 初始化 Mermaid
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'default',
+            themeVariables: {
+                primaryColor: '#667eea',
+                primaryTextColor: '#333',
+                primaryBorderColor: '#764ba2',
+                lineColor: '#333',
+                secondaryColor: '#f8f9fa',
+                tertiaryColor: '#e8f4f8'
+            }
+        });
+
+        // 添加打印样式
+        window.addEventListener('beforeprint', function() {
+            document.body.style.background = 'white';
+        });
+
+        window.addEventListener('afterprint', function() {
+            document.body.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+        });
+    </script>
+</body>
+</html> 

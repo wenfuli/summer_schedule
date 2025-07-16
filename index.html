@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📚 学习计划表集合</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', 'PingFang SC', 'Hiragino Sans GB', 'WenQuanYi Micro Hei', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 1.2em;
+            margin-bottom: 40px;
+            font-weight: normal;
+        }
+
+        .pages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .page-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .page-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            border-color: #667eea;
+        }
+
+        .page-card h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .page-card p {
+            color: #6c757d;
+            margin-bottom: 20px;
+            font-size: 0.95em;
+        }
+
+        .page-link {
+            display: inline-block;
+            padding: 12px 25px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .page-link:hover {
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+            transform: scale(1.05);
+        }
+
+        .coming-soon {
+            background: linear-gradient(135deg, #ffeaa7 0%, #fab1a0 100%);
+            color: #e17055;
+            cursor: not-allowed;
+        }
+
+        .coming-soon:hover {
+            background: linear-gradient(135deg, #ffeaa7 0%, #fab1a0 100%);
+            transform: none;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 2px solid #ecf0f1;
+            color: #7f8c8d;
+        }
+
+        .github-info {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .github-info a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .github-info a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            .pages-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📚 学习计划表集合</h1>
+        <p class="subtitle">个性化学习计划，助力成长每一天</p>
+
+        <div class="pages-grid">
+            <div class="page-card">
+                <h3>🌟 小学一升二年级暑假学习计划表</h3>
+                <p>详细的暑假学习安排，包含作息时间表、网课安排、进度跟踪等完整内容。适合小学生暑假期间的学习管理。</p>
+                <a href="升二年级暑假学习计划表.html" class="page-link">📖 查看详情</a>
+            </div>
+
+            <div class="page-card">
+                <h3>📅 初中生学习计划表</h3>
+                <p>针对初中生的学习计划模板，包含各科目时间分配、考试准备、课外活动安排等内容。</p>
+                <a href="#" class="page-link coming-soon">🚧 敬请期待</a>
+            </div>
+
+            <div class="page-card">
+                <h3>🎓 高中生复习计划表</h3>
+                <p>高中生专用的复习计划表，涵盖高考各科目的复习策略、时间管理、模拟考试安排等。</p>
+                <a href="#" class="page-link coming-soon">🚧 敬请期待</a>
+            </div>
+
+            <div class="page-card">
+                <h3>💼 成人学习计划表</h3>
+                <p>适合成人学习的计划表模板，包含职业技能提升、证书考试、语言学习等多种场景。</p>
+                <a href="#" class="page-link coming-soon">🚧 敬请期待</a>
+            </div>
+
+            <div class="page-card">
+                <h3>🏃‍♂️ 体育锻炼计划表</h3>
+                <p>科学的体育锻炼计划，包含有氧运动、力量训练、柔韧性练习等全面的健身安排。</p>
+                <a href="#" class="page-link coming-soon">🚧 敬请期待</a>
+            </div>
+
+            <div class="page-card">
+                <h3>🎨 兴趣爱好计划表</h3>
+                <p>培养兴趣爱好的计划表，包含绘画、音乐、手工、编程等多种兴趣类别的学习安排。</p>
+                <a href="#" class="page-link coming-soon">🚧 敬请期待</a>
+            </div>
+        </div>
+
+        <div class="github-info">
+            <h3>🔗 GitHub仓库</h3>
+            <p>本项目托管在GitHub上，欢迎Star和Fork！</p>
+            <a href="https://github.com/wenfuli/summer_schedule" target="_blank">👨‍💻 查看源代码</a>
+        </div>
+
+        <div class="footer">
+            <p><strong>📄 使用说明</strong></p>
+            <p>所有计划表均支持在线查看和打印，建议使用现代浏览器获得最佳体验。</p>
+            <br>
+            <p><em>💡 如有建议或需要定制计划表，欢迎通过GitHub Issues联系我们。</em></p>
+            <br>
+            <p><strong>© 2025 学习计划表集合 - 让学习更有条理</strong></p>
+        </div>
+    </div>
+</body>
+</html> 

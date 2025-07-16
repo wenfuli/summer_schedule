@@ -1272,6 +1272,68 @@
             }
         }
 
+        function forcePlayVideo() {
+            if (!videoPlayer) {
+                console.error('VideoJS播放器未初始化');
+                return;
+            }
+
+            console.log('强制播放视频');
+            
+            try {
+                // 尝试多种播放方式
+                const playPromise = videoPlayer.play();
+                
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        console.log('视频播放成功');
+                    }).catch(error => {
+                        console.error('视频播放失败:', error);
+                        
+                        // 如果VideoJS播放失败，尝试原生播放
+                        const nativeVideo = videoPlayer.el().querySelector('video');
+                        if (nativeVideo) {
+                            console.log('尝试原生播放');
+                            nativeVideo.play().then(() => {
+                                console.log('原生播放成功');
+                            }).catch(nativeError => {
+                                console.error('原生播放也失败:', nativeError);
+                                showPlaybackError();
+                            });
+                        }
+                    });
+                } else {
+                    console.log('播放方法返回undefined，可能是同步播放');
+                }
+            } catch (error) {
+                console.error('播放过程中出错:', error);
+                showPlaybackError();
+            }
+        }
+
+        function showPlaybackError() {
+            const errorMessage = `
+                <div style="text-align: center; padding: 40px; background: #f8d7da; color: #721c24; border-radius: 8px;">
+                    <div style="font-size: 2em; margin-bottom: 15px;">⚠️</div>
+                    <h3>播放失败</h3>
+                    <p>视频播放遇到问题，请尝试：</p>
+                    <ul style="text-align: left; display: inline-block; margin: 20px 0;">
+                        <li>刷新页面重试</li>
+                        <li>检查网络连接</li>
+                        <li>使用其他浏览器</li>
+                        <li>安装CORS插件</li>
+                    </ul>
+                    <button onclick="location.reload()" style="padding: 10px 20px; background: #dc3545; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                        刷新页面
+                    </button>
+                </div>
+            `;
+            
+            document.getElementById('video-placeholder').innerHTML = errorMessage;
+            document.getElementById('video-placeholder').style.display = 'block';
+            document.getElementById('lesson-video').style.display = 'none';
+        }
+
         function addVideoEventListeners() {
             if (!videoPlayer) return;
 
@@ -1285,6 +1347,14 @@
             videoPlayer.on('error', handleVideoError);
             videoPlayer.on('loadedmetadata', onVideoLoaded);
             videoPlayer.on('canplay', onVideoCanPlay);
+            
+            // 添加播放按钮点击事件
+            videoPlayer.on('click', () => {
+                console.log('播放器被点击');
+                if (videoPlayer.paused()) {
+                    forcePlayVideo();
+                }
+            });
             
             console.log('VideoJS事件监听器已添加');
         }
@@ -1434,8 +1504,27 @@
                 // 重置播放器
                 videoPlayer.ready(() => {
                     videoPlayer.currentTime(0);
-                    videoPlayer.pause();
-                    console.log('视频加载完成，准备播放');
+                    
+                    // 确保播放器处于正确状态
+                    videoPlayer.load();
+                    
+                    // 添加播放器状态检查
+                    setTimeout(() => {
+                        if (videoPlayer.readyState() >= 1) {
+                            console.log('视频加载完成，准备播放');
+                            
+                            // 手动添加播放按钮点击事件
+                            const bigPlayButton = videoPlayer.el().querySelector('.vjs-big-play-button');
+                            if (bigPlayButton) {
+                                bigPlayButton.addEventListener('click', () => {
+                                    console.log('大播放按钮被点击');
+                                    forcePlayVideo();
+                                });
+                            }
+                        } else {
+                            console.log('视频还未完全加载，等待中...');
+                        }
+                    }, 500);
                 });
                 
                 // 立即检测CORS问题
@@ -2044,10 +2133,36 @@
         function onVideoLoaded() {
             console.log('视频元数据加载完成');
             hideVideoError();
+            
+            // 确保播放器可以正常播放
+            if (videoPlayer) {
+                // 重新绑定播放按钮事件
+                setTimeout(() => {
+                    const playButton = videoPlayer.el().querySelector('.vjs-play-control');
+                    if (playButton) {
+                        playButton.addEventListener('click', () => {
+                            console.log('播放控制按钮被点击');
+                            forcePlayVideo();
+                        });
+                    }
+                }, 200);
+            }
         }
 
         function onVideoCanPlay() {
             console.log('视频可以播放');
+            
+            // 添加键盘快捷键支持
+            document.addEventListener('keydown', (e) => {
+                if (e.code === 'Space' && videoPlayer && document.activeElement.tagName !== 'INPUT') {
+                    e.preventDefault();
+                    if (videoPlayer.paused()) {
+                        forcePlayVideo();
+                    } else {
+                        videoPlayer.pause();
+                    }
+                }
+            });
         }
 
         function checkCORSAndFallback(videoUrl) {

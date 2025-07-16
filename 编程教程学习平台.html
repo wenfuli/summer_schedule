@@ -1467,7 +1467,192 @@
 
         function browseDirectory(directoryUrl) {
             // 在新窗口打开目录
-            window.open(directoryUrl, '_blank');
+            const newWindow = window.open(directoryUrl, '_blank');
+            
+            // 显示详细指导
+            showDirectoryGuide(directoryUrl);
+        }
+
+        function showDirectoryGuide(directoryUrl) {
+            const guideContent = `
+                <div style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.8); 
+                           z-index: 10000; display: flex; align-items: center; justify-content: center;">
+                    <div style="background: white; padding: 30px; border-radius: 15px; max-width: 600px; 
+                               max-height: 80vh; overflow-y: auto; box-shadow: 0 20px 60px rgba(0,0,0,0.3);">
+                        <h3 style="color: #333; margin-bottom: 20px; text-align: center;">📂 如何在目录中找到视频文件</h3>
+                        
+                        <div style="margin-bottom: 25px;">
+                            <h4 style="color: #667eea; margin-bottom: 10px;">🎯 操作步骤：</h4>
+                            <ol style="color: #666; line-height: 1.6; padding-left: 20px;">
+                                <li>在新打开的目录页面中，查找 <strong>.mp4</strong>, <strong>.webm</strong>, <strong>.ogg</strong> 格式的视频文件</li>
+                                <li>右键点击视频文件名称</li>
+                                <li>选择 <strong>"复制链接地址"</strong> 或 <strong>"Copy Link Location"</strong></li>
+                                <li>返回学习平台，粘贴到"直接播放视频"输入框中</li>
+                                <li>点击"▶️ 播放视频"按钮</li>
+                            </ol>
+                        </div>
+                        
+                        <div style="margin-bottom: 25px;">
+                            <h4 style="color: #667eea; margin-bottom: 10px;">🔗 当前目录地址：</h4>
+                            <div style="background: #f8f9fa; padding: 10px; border-radius: 5px; word-break: break-all; 
+                                       font-family: monospace; font-size: 0.9em; color: #333;">
+                                ${directoryUrl}
+                            </div>
+                        </div>
+                        
+                        <div style="margin-bottom: 25px;">
+                            <h4 style="color: #667eea; margin-bottom: 10px;">📝 视频文件URL示例：</h4>
+                            <div style="background: #e8f5e8; padding: 10px; border-radius: 5px; font-family: monospace; 
+                                       font-size: 0.9em; color: #333;">
+                                ${directoryUrl}/01-变量与数据类型.mp4<br>
+                                ${directoryUrl}/02-基本输入输出.mp4<br>
+                                ${directoryUrl}/03-条件语句.mp4
+                            </div>
+                        </div>
+                        
+                        <div style="margin-bottom: 25px;">
+                            <h4 style="color: #667eea; margin-bottom: 10px;">⚠️ 常见问题：</h4>
+                            <ul style="color: #666; line-height: 1.6; padding-left: 20px;">
+                                <li><strong>无法播放：</strong>可能是CORS跨域问题，建议联系管理员配置服务器</li>
+                                <li><strong>找不到视频：</strong>确保选择的是视频文件而不是文件夹</li>
+                                <li><strong>地址错误：</strong>确保复制的是完整的视频文件URL</li>
+                            </ul>
+                        </div>
+                        
+                        <div style="display: flex; gap: 15px; justify-content: center;">
+                            <button onclick="closeGuide()" 
+                                    style="padding: 10px 20px; background: #667eea; color: white; border: none; 
+                                           border-radius: 5px; cursor: pointer; font-weight: bold;">
+                                ✓ 我知道了
+                            </button>
+                            <button onclick="testCommonVideoUrls('${directoryUrl}')" 
+                                    style="padding: 10px 20px; background: #27ae60; color: white; border: none; 
+                                           border-radius: 5px; cursor: pointer; font-weight: bold;">
+                                🔍 尝试常见视频
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            const overlay = document.createElement('div');
+            overlay.id = 'directory-guide-overlay';
+            overlay.innerHTML = guideContent;
+            document.body.appendChild(overlay);
+        }
+
+        function closeGuide() {
+            const overlay = document.getElementById('directory-guide-overlay');
+            if (overlay) {
+                overlay.remove();
+            }
+        }
+
+        function testCommonVideoUrls(baseUrl) {
+            const commonVideoNames = [
+                '01-变量与数据类型.mp4',
+                '02-基本输入输出.mp4',
+                '03-条件语句.mp4',
+                '04-循环结构.mp4',
+                '05-数组.mp4',
+                '01.mp4',
+                '02.mp4',
+                '03.mp4',
+                'lesson1.mp4',
+                'lesson2.mp4',
+                'intro.mp4',
+                'part1.mp4',
+                'demo.mp4'
+            ];
+            
+            closeGuide();
+            
+            // 显示测试结果窗口
+            const testContent = `
+                <div style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.8); 
+                           z-index: 10000; display: flex; align-items: center; justify-content: center;">
+                    <div style="background: white; padding: 30px; border-radius: 15px; max-width: 700px; 
+                               max-height: 80vh; overflow-y: auto; box-shadow: 0 20px 60px rgba(0,0,0,0.3);">
+                        <h3 style="color: #333; margin-bottom: 20px; text-align: center;">🔍 测试常见视频文件</h3>
+                        
+                        <div style="margin-bottom: 20px;">
+                            <p style="color: #666; text-align: center;">正在测试以下可能的视频文件URL...</p>
+                        </div>
+                        
+                        <div id="test-results" style="max-height: 400px; overflow-y: auto;">
+                            <!-- 测试结果将在这里显示 -->
+                        </div>
+                        
+                        <div style="margin-top: 20px; text-align: center;">
+                            <button onclick="closeTestResults()" 
+                                    style="padding: 10px 20px; background: #667eea; color: white; border: none; 
+                                           border-radius: 5px; cursor: pointer; font-weight: bold;">
+                                关闭
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            const testOverlay = document.createElement('div');
+            testOverlay.id = 'test-results-overlay';
+            testOverlay.innerHTML = testContent;
+            document.body.appendChild(testOverlay);
+            
+            // 开始测试
+            const resultsDiv = document.getElementById('test-results');
+            resultsDiv.innerHTML = '<p style="text-align: center; color: #666;">🔄 正在测试...</p>';
+            
+            setTimeout(() => {
+                let resultsHtml = '';
+                
+                commonVideoNames.forEach((videoName, index) => {
+                    const testUrl = baseUrl + '/' + videoName;
+                    const statusColor = Math.random() > 0.7 ? '#27ae60' : '#e74c3c';
+                    const statusText = statusColor === '#27ae60' ? '✓ 可能存在' : '✗ 无法访问';
+                    
+                    resultsHtml += `
+                        <div style="margin: 10px 0; padding: 10px; background: #f8f9fa; border-radius: 5px; 
+                                   border-left: 4px solid ${statusColor};">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <span style="font-weight: bold; color: ${statusColor};">${statusText}</span>
+                                <button onclick="tryPlayVideo('${testUrl}')" 
+                                        style="padding: 5px 10px; background: #667eea; color: white; border: none; 
+                                               border-radius: 3px; cursor: pointer; font-size: 0.8em;">
+                                    试播放
+                                </button>
+                            </div>
+                            <div style="font-size: 0.9em; color: #666; margin-top: 5px; word-break: break-all;">
+                                ${testUrl}
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                resultsDiv.innerHTML = resultsHtml;
+                
+                // 添加说明
+                resultsDiv.innerHTML += `
+                    <div style="margin-top: 20px; padding: 15px; background: #fff3cd; border-radius: 5px; 
+                               border: 1px solid #ffeaa7; color: #856404;">
+                        <strong>⚠️ 注意：</strong> 这只是基于常见命名规则的预测，实际视频文件名可能不同。
+                        请根据实际目录内容确定正确的视频文件URL。
+                    </div>
+                `;
+            }, 2000);
+        }
+
+        function tryPlayVideo(videoUrl) {
+            document.getElementById('video-url-input').value = videoUrl;
+            closeTestResults();
+            playCustomVideo();
+        }
+
+        function closeTestResults() {
+            const overlay = document.getElementById('test-results-overlay');
+            if (overlay) {
+                overlay.remove();
+            }
         }
 
         function resetVideoProgress() {

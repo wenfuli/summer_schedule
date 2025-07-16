@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>💻 编程学习平台 - 在线视频教程</title>
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💻</text></svg>">
     <!-- Video.js CSS -->
     <link href="https://vjs.zencdn.net/8.6.1/video-js.css" rel="stylesheet">
     <style>
@@ -1123,6 +1125,11 @@
             videoPlayer.on('ended', onVideoEnded);
             videoPlayer.on('play', onVideoPlay);
             videoPlayer.on('pause', onVideoPause);
+            
+            // 添加错误处理
+            videoPlayer.on('error', handleVideoError);
+            videoPlayer.on('loadedmetadata', onVideoLoaded);
+            videoPlayer.on('canplay', onVideoCanPlay);
         });
 
         function updateStatistics() {
@@ -1221,7 +1228,12 @@
         }
 
         function loadVideo(videoUrl) {
-            if (!videoPlayer || !videoUrl) return;
+            if (!videoPlayer || !videoUrl) {
+                console.error('视频播放器或URL未定义:', { videoPlayer, videoUrl });
+                return;
+            }
+            
+            console.log('正在加载视频:', videoUrl);
             
             // 检查是否是目录URL
             if (videoUrl.endsWith('/')) {
@@ -1230,21 +1242,44 @@
                 return;
             }
             
+            // 显示加载状态
+            showVideoLoading();
+            
             // 隐藏占位符，显示视频播放器
             document.getElementById('video-placeholder').style.display = 'none';
             document.getElementById('lesson-video').style.display = 'block';
             
             // 加载视频
-            videoPlayer.src({
-                src: videoUrl,
-                type: 'video/mp4'
-            });
+            try {
+                videoPlayer.src({
+                    src: videoUrl,
+                    type: 'video/mp4'
+                });
+                
+                // 重置播放器
+                videoPlayer.ready(() => {
+                    videoPlayer.currentTime(0);
+                    videoPlayer.pause();
+                    console.log('视频加载完成，准备播放');
+                });
+            } catch (error) {
+                console.error('视频加载失败:', error);
+                showVideoError('视频加载时出现错误: ' + error.message);
+            }
+        }
+
+        function showVideoLoading() {
+            const placeholder = document.getElementById('video-placeholder');
+            placeholder.innerHTML = `
+                <div style="text-align: center; padding: 40px;">
+                    <div style="font-size: 3em; margin-bottom: 20px; animation: spin 1s linear infinite;">⏳</div>
+                    <h3 style="color: #333; margin-bottom: 15px;">正在加载视频...</h3>
+                    <p style="color: #666;">请稍等片刻</p>
+                </div>
+            `;
             
-            // 重置播放器
-            videoPlayer.ready(() => {
-                videoPlayer.currentTime(0);
-                videoPlayer.pause();
-            });
+            document.getElementById('video-placeholder').style.display = 'block';
+            document.getElementById('lesson-video').style.display = 'none';
         }
 
         function showDirectoryBrowser(directoryUrl) {
@@ -1771,6 +1806,95 @@
             if (watchTimeInterval) {
                 clearInterval(watchTimeInterval);
                 watchTimeInterval = null;
+            }
+        }
+
+        function handleVideoError() {
+            console.error('视频播放错误:', videoPlayer.error());
+            const errorCode = videoPlayer.error()?.code;
+            const errorMessage = videoPlayer.error()?.message;
+            
+            let userMessage = '视频播放出现错误';
+            
+            switch(errorCode) {
+                case 1:
+                    userMessage = '视频加载被中断';
+                    break;
+                case 2:
+                    userMessage = '网络错误，无法加载视频';
+                    break;
+                case 3:
+                    userMessage = '视频格式不支持';
+                    break;
+                case 4:
+                    userMessage = '视频源不可用';
+                    break;
+                default:
+                    userMessage = `视频播放错误: ${errorMessage || '未知错误'}`;
+            }
+            
+            showVideoError(userMessage);
+        }
+
+        function onVideoLoaded() {
+            console.log('视频元数据加载完成');
+            hideVideoError();
+        }
+
+        function onVideoCanPlay() {
+            console.log('视频可以播放');
+        }
+
+        function showVideoError(message) {
+            const placeholder = document.getElementById('video-placeholder');
+            placeholder.innerHTML = `
+                <div style="text-align: center; padding: 40px;">
+                    <div style="font-size: 3em; margin-bottom: 20px; color: #e74c3c;">⚠️</div>
+                    <h3 style="color: #e74c3c; margin-bottom: 15px;">视频加载失败</h3>
+                    <p style="color: #666; margin-bottom: 20px;">${message}</p>
+                    
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin-bottom: 20px; text-align: left;">
+                        <h4 style="color: #333; margin-bottom: 10px;">💡 可能的解决方案：</h4>
+                        <ul style="color: #666; margin-left: 20px;">
+                            <li>检查网络连接</li>
+                            <li>视频服务器可能暂时不可用</li>
+                            <li>浏览器可能阻止了跨域请求</li>
+                            <li>视频文件可能已被移动或删除</li>
+                        </ul>
+                    </div>
+                    
+                    <div style="margin-top: 25px;">
+                        <button onclick="retryVideoLoad()" 
+                                style="padding: 10px 20px; background: linear-gradient(135deg, #3498db 0%, #2980b9 100%); 
+                                       color: white; border: none; border-radius: 20px; cursor: pointer; margin-right: 10px;">
+                            🔄 重试加载
+                        </button>
+                        <button onclick="openVideoInNewTab()" 
+                                style="padding: 10px 20px; background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%); 
+                                       color: white; border: none; border-radius: 20px; cursor: pointer;">
+                            🔗 在新标签页中打开
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('video-placeholder').style.display = 'block';
+            document.getElementById('lesson-video').style.display = 'none';
+        }
+
+        function hideVideoError() {
+            // 视频加载成功时隐藏错误信息
+        }
+
+        function retryVideoLoad() {
+            if (currentLesson && courseData[currentLesson]) {
+                loadVideo(courseData[currentLesson].videoUrl);
+            }
+        }
+
+        function openVideoInNewTab() {
+            if (currentLesson && courseData[currentLesson]) {
+                window.open(courseData[currentLesson].videoUrl, '_blank');
             }
         }
 

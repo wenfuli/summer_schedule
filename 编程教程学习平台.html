@@ -1146,6 +1146,47 @@
                 }
             }
             videoPlayer = null;
+            
+            // 等待DOM更新后重新创建video元素
+            setTimeout(() => {
+                recreateVideoElement();
+            }, 50);
+        }
+
+        function recreateVideoElement() {
+            const videoContainer = document.querySelector('.video-container');
+            if (!videoContainer) {
+                console.error('找不到视频容器');
+                return;
+            }
+
+            // 移除现有的video元素
+            const existingVideo = document.getElementById('lesson-video');
+            if (existingVideo) {
+                existingVideo.remove();
+            }
+
+            // 创建新的video元素
+            const videoElement = document.createElement('video');
+            videoElement.id = 'lesson-video';
+            videoElement.className = 'video-js vjs-default-skin';
+            videoElement.controls = true;
+            videoElement.preload = 'none';
+            videoElement.width = '100%';
+            videoElement.height = '100%';
+            videoElement.style.cssText = 'display: none; position: absolute; top: 0; left: 0; width: 100%; height: 100%;';
+            videoElement.setAttribute('data-setup', '{}');
+
+            // 添加不支持HTML5的提示
+            const noJsMessage = document.createElement('p');
+            noJsMessage.className = 'vjs-no-js';
+            noJsMessage.innerHTML = '您的浏览器不支持HTML5视频播放。<a href="https://videojs.com/html5-video-support/" target="_blank">请升级您的浏览器</a>';
+            videoElement.appendChild(noJsMessage);
+
+            // 添加到容器中
+            videoContainer.appendChild(videoElement);
+            
+            console.log('重新创建了video元素');
         }
 
         function updateStatistics() {
@@ -1173,20 +1214,33 @@
                 console.log('开始初始化VideoJS播放器');
                 
                 // 确保video元素存在
-                const videoElement = document.getElementById('lesson-video');
+                let videoElement = document.getElementById('lesson-video');
                 if (!videoElement) {
-                    console.error('找不到视频元素');
-                    return;
+                    console.log('找不到视频元素，重新创建');
+                    recreateVideoElement();
+                    videoElement = document.getElementById('lesson-video');
+                    if (!videoElement) {
+                        console.error('无法创建视频元素');
+                        return;
+                    }
                 }
                 
                 // 清理可能存在的VideoJS实例
-                if (videojs.getPlayer && videojs.getPlayer('lesson-video')) {
-                    console.log('发现现有VideoJS实例，正在清理');
-                    try {
-                        videojs.getPlayer('lesson-video').dispose();
-                    } catch (e) {
-                        console.log('清理VideoJS实例时出错:', e);
+                try {
+                    if (videojs.getPlayer && videojs.getPlayer('lesson-video')) {
+                        console.log('发现现有VideoJS实例，正在清理');
+                        const existingPlayer = videojs.getPlayer('lesson-video');
+                        existingPlayer.dispose();
+                        
+                        // 等待DOM更新
+                        setTimeout(() => {
+                            recreateVideoElement();
+                        }, 100);
                     }
+                } catch (e) {
+                    console.log('清理VideoJS实例时出错:', e);
+                    // 如果清理失败，仍然尝试重新创建元素
+                    recreateVideoElement();
                 }
 
                 // 初始化VideoJS播放器
@@ -2032,10 +2086,19 @@
             console.log('切换到原生HTML5播放器');
             
             // 隐藏VideoJS播放器
-            document.getElementById('lesson-video').style.display = 'none';
+            const lessonVideo = document.getElementById('lesson-video');
+            if (lessonVideo) {
+                lessonVideo.style.display = 'none';
+            }
             
             // 创建原生HTML5播放器
             const videoContainer = document.querySelector('.video-container');
+            if (!videoContainer) {
+                console.error('找不到视频容器，无法使用原生播放器');
+                fallbackToIframe(videoUrl);
+                return;
+            }
+            
             const nativeVideo = document.createElement('video');
             nativeVideo.id = 'native-video';
             nativeVideo.controls = true;
